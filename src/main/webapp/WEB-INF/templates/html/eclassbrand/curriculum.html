@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>课表</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <script src="../js/jquery-2.1.4.min.js"></script>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script src="../js/common.js"></script>
+    <style>
+        .content{height:75%;width:100%;margin-top:25px}
+        .tableborder{border:1px solid #b7e3f7;width:11%;background-color:#def0fc;height:25%;}
+        .tableborderleft{border-left:1px solid #b7e3f7;width:11%;background-color:#def0fc;height:25%;}
+        .tablebordertop{border-top:1px solid #b7e3f7;width:11%;background-color:#def0fc;height:25%;}
+        .tableborderbottom{border-bottom:1px solid #b7e3f7;width:11%;background-color:#def0fc;height:25%;}
+        .tableborderright{border-right:1px solid #b7e3f7;width:11%;background-color:#def0fc;height:25%;}
+        .table{width:100%;text-align: center;border-collapse:collapse;height:30%;margin-top:0.5%}
+    </style>
+</head>
+<body onload="clock()" class="curriculum">
+    <!--主题内容开始-->
+    <div id="Main" class="Main task" >
+        <!--头部开始 -->
+        <div class="classinfo">
+            <div class="classname" style="font-size:40px;"></div>
+            <div class="peoplename">总人数：</div>
+            <div class="peoplecount" id="studentcount"></div>
+            <div class="currclock">
+                <div class="clockTime">
+                </div>
+                <div class="clock" >
+                    <div class="clockDate"></div>
+                    <div class="clockWeek"></div>
+                </div>
+            </div>
+        </div>
+        <!--头部结束 -->
+
+        <div class="content">
+            <div style="height:100%;width:90%;margin:auto;position:relative;">
+                <div id="subject"  style="height:100%;width:100%;text-align: center;">
+                </div>
+            </div>
+        </div>
+        <!--导航开始-->
+        <div class="Nav">
+            <div class="bottommenu" onclick="changeurl('classindex.html');">主页</div>
+            <div class="bottommenu" onclick="changeurl('news.html');">新闻</div>
+            <div class="bottommenu" onclick="changeurl('activity.html');">活动</div>
+            <div class="bottommenu" onclick="changeurl('curriculum.html');" style="background-color:white;border-radius:15px;color:#625cd8;">课表</div>
+            <div class="bottommenu" onclick="changeurl('member.html');">成员</div>
+            <div class="bottommenu" onclick="changeurl('task.html');">作业</div>
+            <div class="bottommenu" onclick="changeurl('cleanhealth.html');">值日</div>
+            <div class="bottommenu" onclick="changeurl('honor.html');">荣誉</div>
+            <div class="bottommenu" onclick="changeurl('recommend.html');">推荐</div>
+            <div class="bottommenu" style="float:right;width:70px" onclick="window.CallCSharpMethod('ShowSetForm','')"><img style="vertical-align:middle;height:35px" src="../resource/setup.png"></div>
+            <div class="bottommenu" style="float:right;width:70px" onclick="window.CallCSharpMethod('ReturnToDeskTop','');"><img style="vertical-align:middle;height:35px" src="../resource/return.png"></div>
+            <div class="bottommenu" style="float:right;width:70px" onclick="window.CallCSharpMethod('ShowSwitchMode','')"><img style="vertical-align:middle" src="../resource/modeswitching.png"></div>
+        </div>
+        <!--导航结束-->
+    </div>
+    <!--主题内容结束-->
+<script>
+    setTimeout(function(){
+        document.getElementsByTagName('body')[0].style.height = window.innerHeight+'px';
+        $("#Main").height(window.innerHeight);
+    },20);
+
+    var curriculumData = [];
+    function initClassCurriclumData()
+    {
+        InitClassInfo();
+        curriculumData = [];
+        var schoolId = classInfo.schoolId;
+        var classId = classInfo.classId;
+        if($.trim(classId) == "") return;
+        jQuery.ajax({
+            type: "POST",
+            data: {"schoolId":schoolId,"classId":classId},
+            dataType: "json",
+            url: "/service/eclassbrand/getSchoolClassCurriculumLists",
+            success: function (result) {
+                curriculumData = result;
+                initDataList();
+            },
+            error:function () {
+
+            }
+        });
+    }
+
+    function initDataList()
+    {
+        $("#subject").html("");
+        var classId = classInfo.classId;
+        var data="";
+        data="<table class='table' style='height:2%'><tr style=\"height:14%;color:white;font-size:25px;\">\n" +
+             "    <td style=\"width:11%\">节次</td>\n" +
+             "    <td style=\"width:11%\">上课时间</td>\n" +
+             "    <td style=\"width:11%\">周一</td>\n" +
+             "    <td style=\"width:11%\">周二</td>\n" +
+             "    <td style=\"width:11%\">周三</td>\n" +
+             "    <td style=\"width:11%\">周四</td>\n" +
+             "    <td style=\"width:11%\">周五</td>\n" +
+             "    <td style=\"width:11%\">周六</td>\n" +
+             "    <td style=\"width:11%\">周日</td>\n" +
+             "</tr><table></table>";
+        if($.trim(classId) == "") return;
+        jQuery.ajax({
+            type: "POST",
+            data: {"schoolId": classInfo.schoolId,"stageId":classInfo.stageId},
+            dataType: "json",
+            url: "/service/eclassbrand/getSchoolScheduleList",
+            success: function (result) {
+                var htmlArray = [];
+                for(var i=0;i<result.length;i++) {
+                    var item = result[i];
+                    if (i % 4 == 0)
+                        data = data + '<table class="table"><tr>' +
+                            '           <td style="color:white;width:11%">' + (parseInt(i) + 1) + '' +
+                            '           </td>' +
+                            '           <td class="tableborderbottom tableborderright" style="border-top-left-radius:15px;color:#1dadeb">' + getCurrTime(1, item.weekTimeList, item.session) +
+                            '           </td>' +
+                            '           <td class="tableborderbottom tableborderright">' + getCurrName(1, item.weekTimeList, item.session) +
+                            '           </td>' +
+                            '           <td class="tableborderbottom tableborderright">' + getCurrName(2, item.weekTimeList, item.session) +
+                            '           </td>' +
+                            '           <td class="tableborderbottom tableborderright">' + getCurrName(3, item.weekTimeList, item.session) +
+                            '           </td>' +
+                            '           <td class="tableborderbottom tableborderright">' + getCurrName(4, item.weekTimeList, item.session) +
+                            '           </td>' +
+                            '           <td class="tableborderbottom tableborderright">' + getCurrName(5, item.weekTimeList, item.session) +
+                            '           </td>' +
+                            '           <td class="tableborderbottom tableborderright">' + getCurrName(6, item.weekTimeList, item.session) +
+                            '           </td>' +
+                            '           <td class="tableborderbottom tableborderleft" style="border-top-right-radius:15px">' + getCurrName(0, item.weekTimeList, item.session) +
+                            '           </td>' +
+                            '</tr>';
+                   else if (i % 4 == 3)
+                        data = data + '<tr>' +
+                            '           <td style="color:white;width:11%">' + (parseInt(i) + 1) + '' +
+                            '           </td>' +
+                            '           <td class="tablebordertop tableborderright" style="border-bottom-left-radius:15px;color:#1dadeb">' + getCurrTime(1, item.weekTimeList, item.session) +
+                            '           </td>' +
+                            '           <td class="tablebordertop tableborderright">' + getCurrName(1, item.weekTimeList, item.session) +
+                            '           </td>' +
+                            '           <td class="tablebordertop tableborderright">' + getCurrName(2, item.weekTimeList, item.session) +
+                            '           </td>' +
+                            '           <td class="tablebordertop tableborderright">' + getCurrName(3, item.weekTimeList, item.session) +
+                            '           </td>' +
+                            '           <td class="tablebordertop tableborderright">' + getCurrName(4, item.weekTimeList, item.session) +
+                            '           </td>' +
+                            '           <td class="tablebordertop tableborderright">' + getCurrName(5, item.weekTimeList, item.session) +
+                            '           </td>' +
+                            '           <td class="tablebordertop tableborderright">' + getCurrName(6, item.weekTimeList, item.session) +
+                            '           </td>' +
+                            '           <td class="tablebordertop tableborderleft" style="border-bottom-right-radius:15px">' + getCurrName(0, item.weekTimeList, item.session) +
+                            '           </td>' +
+                            '</tr></table>';
+                    else {
+                        data = data + '<tr>' +
+                            '           <td style="color:white;width:11%">' + (parseInt(i) + 1) + '' +
+                            '           </td>' +
+                            '           <td class="tableborderbottom" style="color:#1dadeb">' + getCurrTime(1, item.weekTimeList, item.session) +
+                            '           </td>' +
+                            '           <td class="tableborder">' + getCurrName(1, item.weekTimeList, item.session) +
+                            '           </td>' +
+                            '           <td class="tableborder">' + getCurrName(2, item.weekTimeList, item.session) +
+                            '           </td>' +
+                            '           <td class="tableborder">' + getCurrName(3, item.weekTimeList, item.session) +
+                            '           </td>' +
+                            '           <td class="tableborder">' + getCurrName(4, item.weekTimeList, item.session) +
+                            '           </td>' +
+                            '           <td class="tableborder">' + getCurrName(5, item.weekTimeList, item.session) +
+                            '           </td>' +
+                            '           <td class="tableborder">' + getCurrName(6, item.weekTimeList, item.session) +
+                            '           </td>' +
+                            '           <td class="tablebordertop">' + getCurrName(0, item.weekTimeList, item.session) +
+                            '           </td>' +
+                            '</tr>';
+                    }
+                }
+                if(result.length>=9)
+                    for(var i=0;i<=11-result.length;i++) {
+                        if (i == 11 - result.length)
+                            data = data + '<tr>' +
+                                '           <td style="color:white;width:11%">' + (result.length + 1 + i) +
+                                '           </td>' +
+                                '           <td class="tablebordertop tableborderright" style="border-bottom-left-radius:15px">' +
+                                '           </td>' +
+                                '           <td class="tablebordertop tableborderright">' +
+                                '           </td>' +
+                                '           <td class="tablebordertop tableborderright">' +
+                                '           </td>' +
+                                '           <td class="tablebordertop tableborderright">' +
+                                '           </td>' +
+                                '           <td class="tablebordertop tableborderright">' +
+                                '           </td>' +
+                                '           <td class="tablebordertop tableborderright">' +
+                                '           </td>' +
+                                '           <td class="tablebordertop tableborderright">' +
+                                '           </td>' +
+                                '           <td class="tablebordertop tableborderleft" style="border-bottom-right-radius:15px">' +
+                                '           </td>' +
+                                '</tr></table>';
+                        else
+                            data = data + '<tr>' +
+                                '           <td style="color:white;width:11%">' + (result.length + 1 + i) +
+                                '           </td>' +
+                                '           <td class="tableborderbottom">' +
+                                '           </td>' +
+                                '           <td class="tableborder">' +
+                                '           </td>' +
+                                '           <td class="tableborder">' +
+                                '           </td>' +
+                                '           <td class="tableborder">' +
+                                '           </td>' +
+                                '           <td class="tableborder">' +
+                                '           </td>' +
+                                '           <td class="tableborder">' +
+                                '           </td>' +
+                                '           <td class="tableborder">' +
+                                '           </td>' +
+                                '           <td class="tablebordertop">' +
+                                '           </td>' +
+                                '</tr>';
+                    }
+                $('#subject').html($('#subject').html()+data);
+            },
+            error:function () {
+
+            }
+        });
+    }
+
+    function getCurrName(week, weekTimeList, session)
+    {
+        var result = "";
+        for(var i=0; i<curriculumData.length; i++) {
+            var item = curriculumData[i];
+            if (item.week == week && item.session == session) {
+                result = item.subjectName + "<br/><span style='color:#1dadeb;font-size:14px;'>" + item.teacherName+"</span>";
+            }
+        }
+        return result;
+    }
+
+    function getCurrTime(week, weekTimeList, session) {
+        var result = "";
+        for (var i = 0; i < weekTimeList.length; i++) {
+            var item = weekTimeList[i];
+            if (item.week == week) {
+                result = item.starttime + "-" + item.endtime;
+            }
+        }
+        return result;
+    }
+
+    function getCurrJC(week, weekTimeList, session)
+    {
+        var result = "";
+        for(var i=0; i<weekTimeList.length; i++)
+        {
+            var item = weekTimeList[i];
+            if(item.week == week)
+            {
+                result = item.name;
+            }
+        }
+        return result;
+    }
+
+    initClassCurriclumData();
+</script>
+</body>
+</html>

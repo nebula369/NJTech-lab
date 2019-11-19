@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="../js/jquery-2.1.4.min.js"></script>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <style>
+        .chooseon{
+            color:#4e97fe !important;
+        }
+    </style>
+    <title></title>
+</head>
+<body style="margin: 0">
+    <div style="background-color:black;height:50px">
+        <div style="height:50px;display: inline-block" id="topmenu">
+        </div>
+        <div style="float:right;display:inline-block;height:50px;line-height:50px;margin-right:10px;color:white;font-size:22px;" onclick="window.CallCSharpMethod('ShowSwitchMode','')">
+            <img src="../resource/modeswitching.png">
+        </div>
+    </div>
+    <div>
+        <iframe id="website" style="border:none;float:left" scrolling="auto"></iframe>
+    </div>
+<script>
+
+    $("#website").height(window.innerHeight-50);
+    $("#website").width(window.innerWidth);
+
+    jQuery.ajax({
+        type: "POST",
+        data: { "unitId": 1, "searchKey": "", "_search":"false","nd":"","rows":15,"page":1,"sidx":"sortnum","sord":"asc"},
+        dataType: "json",
+        url: "/service/eclassbrand/getWebsiteListForPage",
+        success: function (result) {
+            $("#topmenu").html("");
+            for(var i=0;i<result.rows.length;i++)
+            {
+                if(i==0) {
+                    $("#topmenu").html($("#topmenu").html() + "<div onclick=\"changeUrl('" + result.rows[i].url + "',this)\" class=\"chooseon\" style=\"width:121px;height:100%;display:inline-block;text-align:center;line-height:50px;color:white;cursor:pointer\">" + result.rows[i].name + "</div>");
+                    document.getElementById("website").src=result.rows[i].url;
+                }
+                else
+                    $("#topmenu").html($("#topmenu").html()+"<div onclick=\"changeUrl('"+ result.rows[i].url +"',this)\" style=\"width:121px;height:100%;display:inline-block;text-align:center;line-height:50px;color:white;cursor:pointer\">"+ result.rows[i].name +"</div>");
+            }
+        },
+        error: function () {
+
+        }
+    });
+
+    function changeUrl(url,target){
+        var list= document.getElementsByClassName("chooseon");
+        for(var i=0;i<list.length;i++) {
+            $(list[i]).removeClass("chooseon");
+        }
+        document.getElementById("website").src=url;
+        $(target).attr("class","chooseon");
+    }
+
+    function resetUrl(i) {
+        var as = i.contentWindow.document.getElementsByTagName('a');
+        for (var i = 0, j = as.length; i < j; i++) {
+            //if(as[i].href)//修改操作。。
+        }
+    }
+
+    function ShowOpenDoor(){
+        window.CallCSharpMethod('ShowOpenDoor','');
+    }
+</script>
+</body>
+</html>

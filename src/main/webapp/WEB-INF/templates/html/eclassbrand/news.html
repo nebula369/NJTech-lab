@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>新闻</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <style>
+        .content{height:80%;width:100%;margin-top:25px}
+        .content .left{float:left;width:30%;height:100%;position:relative;transition: all 0.5s;-moz-transition: all 0.5s;-webkit-transition: all 0.5s;-o-transition:all 0.5s;}
+        .content .right{float:left;width:70%;height:100%;position:relative;transition: all 0.5s;-moz-transition: all 0.5s;-webkit-transition: all 0.5s;-o-transition:all 0.5s;}
+        .content .left1{float:left;width:50%;height:100%;position:relative;}
+        .content .right1{float:left;width:50%;height:100%;position:relative;}
+        .content .right .rightdiv .news{height:95%;width:95%;margin:auto;}
+        .content .left .lefttop .newst{float:left;height:100%;width:30%;display:none}
+        .content .left .lefttop .newst .title{width:80%;margin:auto;height:10%;;position:relative;font-weight:700}
+        .content .left .lefttop .newsl{float:left;height:100%;width:100%;transition: all 0.5s;-moz-transition: all 0.5s;-webkit-transition: all 0.5s;-o-transition:all 0.5s;}
+        .content .left .lefttop .newsl .title{width:90%;margin:auto;height:10%;position:relative;font-weight:700}
+        .lefttop{width:90%;height:100%;border-radius:15px;background-color:#e2ebfc;position:absolute;top:0;left:5%}
+        .leftbottom{width:90%;height:15%;border-radius:15px;background-color:#e2ebfc;position:absolute;bottom:0;left:5%}
+        .rightdiv{width:98%;height:100%;border-radius:15px;background-color:#e2ebfc;position:absolute;top:0;overflow: auto;}
+        .newtypechoose{border-radius:15px;background-color:#2e87eb;color:white !important;}
+        .newtype{height:50px;padding:5px;width:135px;color:black;text-align:center;line-height:50px;}
+        .newchoose{border-radius:15px;color:#539fea !important;font-weight:700;background: url(../resource/pitchon.png) no-repeat left;}
+        .news{height:50px;padding:5px;color:black;line-height:50px;padding-left: 25px !important;}
+        .newsearch{float:left;width:40%;border-radius:20px;background-color:white;height:50px;border:none;margin-left:20px;margin-top:3.5%;padding-left:10px;}
+        .newbtn{position:relative;float:left;width:140px;height:50px;border:1px solid white;border-radius:10px;margin-top:3.5%;margin-left:15px;}
+        .newbtnicon{position: absolute;left:10px;top:25%;}
+        .newbtntxt{position:absolute;left:60px;top:30%;color:white;}
+        .newtitle{width:70%;display:inline-block;overflow: hidden;white-space: nowrap;text-overflow:ellipsis;}
+        .choosetag{float:left;margin-top: 12px;}
+        .newbtntxt{position:absolute;left:55px;top:45%;font-size:20px;color:#60a5de}
+    </style>
+</head>
+<body onload="clock()" class="newsindex">
+    <!--主题内容开始-->
+    <div id="Main" style="" class="Main honor" >
+        <div class="classinfo">
+            <div class="classname" style="font-size:40px;"></div>
+            <div class="peoplename">总人数：</div>
+            <div class="peoplecount" id="studentcount"></div>
+            <div class="currclock">
+                <div class="clockTime">
+                </div>
+                <div class="clock" >
+                    <div class="clockDate"></div>
+                    <div class="clockWeek"></div>
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            <div class="left" id="left">
+                <div class="lefttop">
+                    <div class="newst" id="newst">
+                        <div class="title">
+                            <img onclick="hidtypelist();" src="../resource/btn_close.png" style="position:absolute;bottom:0;">
+                        </div>
+                        <div style="width:80%;margin:auto;height:90%;" id="types">
+                           <!-- <div onclick="choosetype(this)" class="newtypechoose newtype" style=";margin-top:20px;">所有新闻</div>
+                            <div onclick="choosetype(this)" class="newtype">班级新闻</div>
+                            <div onclick="choosetype(this)" class="newtype">校内新闻</div>
+                            <div onclick="choosetype(this)" class="newtype">教育新闻</div>-->
+                        </div>
+                    </div>
+                    <div class="newsl" id="newsl">
+                        <img id="showtag" onclick="showtypelist();" src="../resource/btn_List_open.png" style="position:absolute;left:0;top:45%">
+                        <div class="title">
+                            <img src="../resource/icon_news.png" style="position:absolute;bottom:0">
+                            <label id="typename" style="position:absolute;bottom: 5px;left:10%;font-size:30px">所有新闻</label>
+                            <img onclick="showtypelist();" src="../resource/icon_classify.png" style="position:absolute;bottom:0;right:0">
+                        </div>
+                        <div style="width:90%;margin:auto;height:80%;" id="newslist">
+                           <!-- <div onclick="choosenews(this)" class="newchoose news" style="margin-top:20px;">驻精彩绝伦 非遗进校园活动走进大同大学 2019.05.29</div>
+                            <div onclick="choosenews(this)" class="news">开封市举行武术进校园活动 传承中华传统文化 2019.05.29</div>
+                            <div onclick="choosenews(this)" class="news">开封市举行武术进校园活动 传承中华传统文化 2019.05.29</div>
+                            <div onclick="choosenews(this)" class="news">开封市举行武术进校园活动 传承中华传统文化 2019.05.29</div>
+                            <div onclick="choosenews(this)" class="news">开封市举行武术进校园活动 传承中华传统文化 2019.05.29</div>
+                            <div onclick="choosenews(this)" class="news">开封市举行武术进校园活动 传承中华传统文化 2019.05.29</div>
+                            <div onclick="choosenews(this)" class="news">开封市举行武术进校园活动 传承中华传统文化 2019.05.29</div>
+                            <div onclick="choosenews(this)" class="news">开封市举行武术进校园活动 传承中华传统文化 2019.05.29</div>-->
+                        </div>
+                        <div style="width:90%;margin:auto;height:10%;position:relative">
+                            <img src="../resource/icon_search.png" style="position:absolute;display:none">
+                            <label style="display:none;position:absolute;top:5px;left:50px;font-size:20px;color:#53a0e8">搜索</label>
+                            <div style="position:absolute;right:0;top:0;width:200px;height:50px">
+                                <img src="../resource/btn_left_n.png" class="newbtnicon" style="top: inherit;bottom:0;">
+                                <label class="newbtntxt pointer" style="left:70px !important;top:inherit;top:3px;">1</label>
+                                <label class="newbtntxt pointer" style="left:90px !important;top:inherit;top:3px;">/</label>
+                                <label class="newbtntxt pointer" style="left:110px !important;top:inherit;top:3px">1</label>
+                                <img src="../resource/btn_right_n.png" class="newbtnicon" style="top: inherit;bottom:0;left:150px">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="leftbottom" style="display:none">
+                    <input type="text" id="txtkey" placeholder="新闻标题" class="newsearch">
+                    <div class="newbtn pointer" onclick="initnewslist();"><img src="../resource/u601.svg" class="newbtnicon"><label class="newbtntxt pointer">搜索新闻</label></div>
+                    <div class="newbtn pointer"><img src="../resource/u600.svg" class="newbtnicon"><label class="newbtntxt pointer">查看所有</label></div>
+                    <div class="newbtn pointer" onclick="$('#else').show();$('#Main').hide();"><img src="../resource/u599.svg" class="newbtnicon"><label class="newbtntxt pointer">全屏阅读</label></div>
+                </div>
+            </div>
+            <div class="right" id="right">
+                <div class="rightdiv">
+                    <div class="news" id="news">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--导航开始-->
+        <div class="Nav">
+            <div class="bottommenu" onclick="changeurl('classindex.html');">主页</div>
+            <div class="bottommenu" onclick="changeurl('news.html');" style="background-color:white;border-radius:15px;color:#625cd8;">新闻</div>
+            <div class="bottommenu" onclick="changeurl('activity.html');">活动</div>
+            <div class="bottommenu" onclick="changeurl('curriculum.html');">课表</div>
+            <div class="bottommenu" onclick="changeurl('member.html');">成员</div>
+            <div class="bottommenu" onclick="changeurl('task.html');">作业</div>
+            <div class="bottommenu" onclick="changeurl('cleanhealth.html');">值日</div>
+            <div class="bottommenu" onclick="changeurl('honor.html');">荣誉</div>
+            <div class="bottommenu" onclick="changeurl('recommend.html');">推荐</div>
+            <div class="bottommenu" style="float:right;width:70px" onclick="window.CallCSharpMethod('ShowSetForm','')"><img style="vertical-align:middle;height:35px" src="../resource/setup.png"></div>
+            <div class="bottommenu" style="float:right;width:70px" onclick="window.CallCSharpMethod('ReturnToDeskTop','');"><img style="vertical-align:middle;height:35px" src="../resource/return.png"></div>
+            <div class="bottommenu" style="float:right;width:70px" onclick="window.CallCSharpMethod('ShowSwitchMode','')"><img style="vertical-align:middle" src="../resource/modeswitching.png"></div>
+        </div>
+        <!--导航结束-->
+    </div>
+    <div style="height:100%;width:100%;overflow-y:auto;position:relative;display:none;" id="else">
+        <div style="height:97%;width:70%;margin:auto;" id="bignews"></div>
+        <img class="pointer" onclick="$('#else').hide();$('#Main').show();" id="back" src="../resource/back.png" style="position:absolute;bottom:0;right:0;height:80px;">
+    </div>
+    <input type="hidden" id="hidType" value="0">
+    <input type="hidden" id="hidNewsId" value="0">
+    <script src="../js/jquery-2.1.4.min.js"></script>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script src="../js/common.js"></script>
+    <script>
+        setInterval(function(){
+            document.getElementsByTagName('body')[0].style.height = window.innerHeight+'px';
+            $("#Main").height(window.innerHeight);
+        },20);
+
+        window.setInterval("isbottom()",20)
+
+        function isbottom(){
+            document.getElementById('back').style.top=(document.getElementById("else").scrollTop+(document.documentElement.clientHeight- document.getElementById('back').offsetHeight)-20)+"px";
+        }
+
+        function showtypelist(){
+            document.getElementById("right").style.width="50%";
+            document.getElementById("left").style.width="50%";
+            document.getElementById("newsl").style.width="60%";
+            document.getElementById("newst").style.display="block";
+            $("#showtag").hide();
+        }
+
+        function hidtypelist(){
+            document.getElementById("right").style.width="70%";
+            document.getElementById("left").style.width="30%";
+            document.getElementById("newsl").style.width="100%";
+            document.getElementById("newst").style.display="none";
+            $("#showtag").show();
+        }
+
+        function choosetype(target,id,name) {
+            var list= document.getElementsByClassName("newtypechoose");
+            for(var i=0;i<list.length;i++) {
+                $(list[i]).removeClass("newtypechoose");
+            }
+            $(target).attr("class","newtype newtypechoose");
+            $("#hidType").val(id);
+            $("#typename").html(name);
+            initnewslist();
+        }
+
+        function choosenews(target,id) {
+            var list= document.getElementsByClassName("newchoose");
+            for(var i=0;i<list.length;i++) {
+                $(list[i]).removeClass("newchoose");
+            }
+            var list1= document.getElementsByClassName("choosetag");
+            for(var i=0;i<list1.length;i++) {
+                $(list1[i]).hide();
+            }
+            $("#tag"+ id +"").show();
+            $(target).attr("class","news newchoose");
+            $("#hidNewsId").val(id);
+            initnews();
+        }
+
+        function inittype()
+        {
+            InitClassInfo();
+            //加载新闻分类
+            if(classInfo.classId==undefined){return;}
+            jQuery("#types").html("");
+            var curr="";
+            jQuery.ajax({
+                type: "POST",
+                data: {"classid":classInfo.classId},
+                dataType: "text",
+                url: "/service/eclassbrand/getnewstypelist",
+                success: function (result) {
+                    var obj=eval("(" + result + ")");
+                    curr="<div onclick=\"choosetype(this,0,'所有新闻')\" class=\"newtypechoose newtype\" style=\";margin-top:20px;\">所有新闻</div>";
+                    $.each(obj,function(i,item){
+                        curr=curr+"<div onclick=\"choosetype(this,"+ item.pkid +",'"+ item.name +"')\" class=\"newtype\">"+ item.name +"</div>";
+                    });
+
+                    $("#types").html(curr);
+                },
+                error:function () {
+                }
+            });
+        }
+
+        function initnewslist(){
+            if(classInfo.classId==undefined){return;}
+            $("#newslist").html("");
+            curr="";
+            jQuery.ajax({
+                type: "POST",
+                data: {"categoryid":$("#hidType").val(),classid:classInfo.classId,key:$("#txtkey").val()},
+                dataType: "text",
+                url: "/service/eclassbrand/getnewslist",
+                success: function (result) {
+                    var obj=eval("(" + result + ")");
+                    var pkid=getQueryVariable("pkid");
+                    $.each(obj,function(i,item){
+                        if(!pkid) {
+                            if (i == 0) {
+                                $("#hidNewsId").val(item.pkid);
+                                curr = "<div onclick=\"choosenews(this," + item.pkid + ")\" class=\"newchoose news\" style=\"margin-top:20px;\"><div class='newtitle'>" + item.title + "</div><span style='float:right'>" + item.createtime.substring(5) + "</span></div>"
+                            } else {
+                                curr = curr + "<div onclick=\"choosenews(this," + item.pkid + ")\" class=\"news\"><div class='newtitle'>" + item.title + "</div><span style='float:right'>" + item.createtime.substring(5) + "</span></div>";
+                            }
+                        }
+                        else {
+                            if (item.pkid==pkid) {
+                                $("#hidNewsId").val(item.pkid);
+                                if(i==0)
+                                    curr =curr+ "<div onclick=\"choosenews(this," + item.pkid + ")\" class=\"newchoose news\" style=\"margin-top:20px;\"><div class='newtitle'>" + item.title + "</div><span style='float:right'>" + item.createtime.substring(5) + "</span></div>"
+                                else
+                                    curr =curr+ "<div onclick=\"choosenews(this," + item.pkid + ")\" class=\"newchoose news\"><div class='newtitle'>" + item.title + "</div><span style='float:right'>" + item.createtime.substring(5) + "</span></div>"
+                            } else {
+                                if(i==0)
+                                    curr =curr+ "<div onclick=\"choosenews(this," + item.pkid + ")\" class=\"news\" style=\"margin-top:20px;\"><div class='newtitle'>" + item.title + "</div><span style='float:right'>" + item.createtime.substring(5) + "</span></div>";
+                                else
+                                    curr = curr + "<div onclick=\"choosenews(this," + item.pkid + ")\" class=\"news\"><div class='newtitle'>" + item.title + "</div><span style='float:right'>" + item.createtime.substring(5) + "</span></div>";
+                            }
+                        }
+                    });
+
+                    $("#newslist").html(curr);
+                    initnews();
+                },
+                error:function () {
+                }
+            });
+        }
+
+        function initnews() {
+            $("#news").html("");
+            jQuery.ajax({
+                type: "POST",
+                data: {"pkid": $("#hidNewsId").val()},
+                dataType: "text",
+                url: "/service/eclassbrand/getnews",
+                success: function (result) {
+                    var obj = eval("(" + result + ")");
+                    $("#news").html(obj.content);
+                    $("#bignews").html(obj.content);
+                },
+                error: function () {
+                }
+            });
+        }
+
+        function getQueryVariable(variable)
+        {
+            var query = window.location.search.substring(1);
+            var vars = query.split("&");
+            for (var i=0;i<vars.length;i++) {
+                var pair = vars[i].split("=");
+                if(pair[0] == variable){return pair[1];}
+            }
+            return(false);
+        }
+
+        $(function () {
+            inittype();
+            initnewslist();
+        });
+    </script>
+</body>
+</html>

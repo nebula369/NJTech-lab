@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>作业</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <style>
+        .task  .content   {
+            font-family: "Arial Negreta", "Arial Normal", Arial;
+            font-style: normal;
+            width: 97%;
+            margin: 2% auto;
+            height:  74%;
+        }
+        .task  .content   .contenttable{
+            height: 100%
+        }
+        .task  .content  .contentlist  .itemsubject{
+            margin: 1% 6%;
+        }
+        .task  .content  .contentlist  .itemsubject  div {
+            background-color: #cdeafc;
+            border-radius: 6px;
+            height: auto;
+            padding: 4px 10px 4px 0;
+            margin: 5px 5px 5px 0;
+        }
+        .task  .content  .contentlist  .subject{
+            vertical-align: top;
+            width: 10%;
+            display: inline-block;
+            background-color: rgba(255,255,255,0.7) !important;
+            border-top-left-radius: 0 !important;
+            border-bottom-left-radius: 0 !important;
+            text-align: center;
+        }
+        .task .content .contentlist .info {
+            width: 70%;
+            display: inline-block;
+            background-color: rgba(255,255,255,0) !important;
+        }
+        .task  .content  .contentlist  .subject   label {
+            color: #3366ff;
+            font-weight: 900;
+            font-size: 18px;
+        }
+        #todayList li:nth-of-type(odd) div, #yesterdayList li:nth-of-type(odd) div{ background: rgba(111, 194, 246,0.2)}/*奇数行 */
+        #todayList li:nth-of-type(even) div, #yesterdayList li:nth-of-type(even) div{   background: rgba(136, 179, 247,0.3) }/*偶数行 */
+        .kehou{    color: #3366ff;}
+    </style>
+    <script src="../js/jquery-2.1.4.min.js"></script>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script src="../js/common.js"></script>
+</head>
+<body onload="clock()">
+<!--主题内容开始-->
+<div id="Main" class="Main task" >
+    <!--头部开始 -->
+    <div class="classinfo">
+        <div class="classname" style="font-size:40px;"></div>
+        <div class="peoplename">总人数：</div>
+        <div class="peoplecount" id="studentcount"></div>
+        <div class="currclock">
+            <div class="clockTime">
+            </div>
+            <div class="clock" >
+                <div class="clockDate"></div>
+                <div class="clockWeek"></div>
+            </div>
+        </div>
+    </div>
+    <!--头部结束 -->
+    <!--内容开始 -->
+    <div class="content">
+        <div class="contenttable">
+            <!--  <div class="contenthead"><span>作业</span></div>-->
+            <table class="contentlist"  style="width: 100%;height: 100%"  border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td  style="width: 48%;vertical-align: top;background-color:#dae6fc;border-radius: 15px;" >
+                        <div style="font-size: 25px; padding: 2% 2% 2% 7%;font-weight: 700">
+                            <img src="../resource/icon_task.png">
+                            <label style="vertical-align:super;font-weight:700;font-size:30px">今日作业</label>
+                        </div>
+                        <ul id="todayList" style="margin: auto; padding: 0;">
+                        </ul>
+                    </td>
+                    <td width="1%"></td>
+                    <td style="width: 48%;vertical-align: top;background-color: #dae6fc;    border-radius: 15px;" >
+                        <div style="font-size: 25px; padding: 2% 2% 2% 7%;font-weight: 700">
+                            <img src="../resource/icon_task.png">
+                            <label style="vertical-align:super;font-weight:700;font-size:30px" id="taskname">昨日作业</label>
+                          </div>
+                        <ul id="yesterdayList" style="margin: auto; padding: 0;">
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <!--结束结束-->
+    <!--导航开始-->
+    <div class="Nav" style="">
+        <div class="bottommenu" onclick="changeurl('classindex.html');">主页</div>
+        <div class="bottommenu" onclick="changeurl('news.html');">新闻</div>
+        <div class="bottommenu" onclick="changeurl('activity.html');">活动</div>
+        <div class="bottommenu" onclick="changeurl('curriculum.html');">课表</div>
+        <div class="bottommenu" onclick="changeurl('member.html');" >成员</div>
+        <div class="bottommenu" onclick="changeurl('task.html');"  style="background-color:white;border-radius:15px;color:#625cd8;">作业</div>
+        <div class="bottommenu"  onclick="changeurl('cleanhealth.html');"  >值日</div>
+        <div class="bottommenu" onclick="changeurl('honor.html');" >荣誉</div>
+        <div class="bottommenu" onclick="changeurl('recommend.html');">推荐</div>
+        <div class="bottommenu" style="float:right;width:70px" onclick="window.CallCSharpMethod('ShowSetForm','')"><img style="vertical-align:middle;height:35px" src="../resource/setup.png"></div>
+        <div class="bottommenu" style="float:right;width:70px" onclick="window.CallCSharpMethod('ReturnToDeskTop','');"><img style="vertical-align:middle;height:35px" src="../resource/return.png"></div>
+        <div class="bottommenu" style="float:right;width:70px" onclick="window.CallCSharpMethod('ShowSwitchMode','')"><img style="vertical-align:middle" src="../resource/modeswitching.png"></div>
+    </div>
+    <!--导航结束-->
+</div>
+<!--主题内容结束-->
+
+<script>
+    //加载数据
+    $(function () {
+        InitClassInfo();
+        if(classInfo.classId==undefined){return;}
+        var today=new Date();
+        var yesterday = new Date(today.getTime() - 24*60*60*1000); //前一天
+        // today=today.Format("yyyy-MM-dd")+" 00:00:00";
+        // yesterday=yesterday.Format("yyyy-MM-dd")+" 23:00:00";
+        jQuery("#todayList").html("");
+        jQuery("#yesterdayList").html("");
+        jQuery.ajax({
+            type: "POST",
+            data: {"classid":classInfo.classId,"begintime":yesterday.Format("yyyy-MM-dd")+" 00:00:00","endtime": today.Format("yyyy-MM-dd")+" 23:00:00" },
+            dataType: "text",
+            url: "/service/eclassbrand/gettasklist",
+            success: function (result) {
+                var obj=eval("(" + result + ")");
+                if(obj.length>0) {
+                    $.each(obj, function (i, item) {
+                        var kehou = "";
+                        if (item.type != 1) {
+                            kehou = "<lable class=\"kehou\">[课堂]</lable>";
+                        }
+                        var createtime = new Date(item.createtime);
+                        if (today.Format("yyyy-MM-dd") == createtime.Format("yyyy-MM-dd"))//今日
+                        {
+                            jQuery("#todayList").append(" <li class='itemsubject'> <div><div class=\"subject\"> <label>" + item.subjectName + "</label></div> <div class=\"info\"> <label>" + item.content + "</label>" + kehou + "</div></div> </li>");
+                        } else {
+                            jQuery("#yesterdayList").append(" <li class='itemsubject'> <div><div class=\"subject\"> <label>" + item.subjectName + "</label></div> <div class=\"info\"> <label>" + item.content + "</label>" + kehou + "</div></div> </li>");
+                        }
+                    });
+                }
+                else{
+                    jQuery.ajax({
+                        type: "POST",
+                        data: {"classid":classInfo.classId,"begintime":'',"endtime": '' },
+                        dataType: "text",
+                        url: "/service/eclassbrand/gettasklist",
+                        success: function (result) {
+                            var obj=eval("(" + result + ")");
+                            if(obj.length>0) {
+                                $.each(obj, function (i, item) {
+                                    var createtime = new Date(item.createtime);
+                                    var kehou = "";
+                                    $("#taskname").html(createtime.Format("MM月dd日"))
+                                    if (item.type != 1) {
+                                        kehou = "<lable class=\"kehou\">[课堂]</lable>";
+                                    }
+                                    if (today.Format("yyyy-MM-dd") == createtime.Format("yyyy-MM-dd"))//今日
+                                    {
+                                        jQuery("#todayList").append(" <li class='itemsubject'> <div><div class=\"subject\"> <label>" + item.subjectName + "</label></div> <div class=\"info\"> <label>" + item.content + "</label>" + kehou + "</div></div> </li>");
+                                    } else {
+                                        jQuery("#yesterdayList").append(" <li class='itemsubject'> <div><div class=\"subject\"> <label>" + item.subjectName + "</label></div> <div class=\"info\"> <label>" + item.content + "</label>" + kehou + "</div></div> </li>");
+                                    }
+                                });
+                            }
+                        }
+                    });
+                }
+            },
+            error:function () {
+            }
+        });
+    });
+
+    setTimeout(function(){
+        document.getElementsByTagName('body')[0].style.height = window.innerHeight+'px';
+        $("#Main").height(window.innerHeight);
+    },20);
+</script>
+</body>
+</html>

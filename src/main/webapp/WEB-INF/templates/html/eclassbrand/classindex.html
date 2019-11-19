@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/dragula.css">
+    <title>主页</title>
+    <style>
+        .activityintro{
+            text-overflow: -o-ellipsis-lastline;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 7;
+            -webkit-box-orient: vertical;
+            text-indent: 35px;
+        }
+    </style>
+</head>
+<body style="margin:0" class="classindex" onload="clock()">
+    <div id="Main" class="Main" data-bind="component: {name: 'dashboard-grid', params: $data}">
+        <div class="classinfo">
+            <div class="classname" style="font-size:40px;"></div>
+            <div class="peoplename">总人数：</div>
+            <div class="peoplecount" id="studentcount"></div>
+            <div class="currclock">
+                <div class="clockTime">
+                </div>
+                <div class="clock" >
+                    <div class="clockDate"></div>
+                    <div class="clockWeek"></div>
+                </div>
+            </div>
+        </div>
+        <div id="partlist" style="height:90%">
+            <div id='sortable' class='container' style="height:100%">
+                <div class="part"  >
+                    <div style="font-weight:700;font-size:1.1em">
+                        <img src="../resource/icon_teacher.png">
+                        <label style="vertical-align:super;font-weight:700;font-size:30px">班主任</label>
+                    </div>
+                    <div class="rightinfo">
+                        <div style="height:50%;width:100%">
+                            <div align="right" style="float:left;height:100%;width:30%;text-align:left">
+                                <img src="" class="part1img" id="teacherimg">
+                            </div>
+                            <div class="teacherinfo">
+                                <div class="part1name" id="teacher">姓名：-</div>
+                                <div class="part1subject" id="subject"><span style='color:#0077ca;'>科目：</span>--</div>
+                                <div class="part1subject" id="honer"><span style='color:#0077ca;'>荣誉：</span>-</div>
+                            </div>
+                        </div>
+                        <div style="height:40%;width:100%">
+                            <div class="part1flag HidTxt" id="flag">教育不是灌输，而是点燃火焰！
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="part">
+                    <div style="font-weight:700;font-size:1.1em">
+                        <img src="../resource/icon_news.png">
+                        <label style="vertical-align:super;font-weight:700;font-size: 1.5em;">校内新闻</label>
+                    </div>
+                    <div style="height:80%;text-align:center;display:none">
+                        <img src="" id="newsphoto" style="width:80%;height:100%">
+                    </div>
+                    <ul class="detail" id="newsdetail" style="list-style: inside;text-align:left;font-size:1.1em;">
+                    </ul>
+                </div>
+                <div class="part">
+                    <div style="font-weight:700;font-size:1.1em">
+                        <img src="../resource/icon_course.png">
+                        <label id="subjecttitle" style="vertical-align:super;font-weight:700;font-size: 1.5em;">上午课程</label>
+                    </div>
+                    <div style="height:80%" id="curriculum">
+
+                    </div>
+                </div>
+                <div class="part">
+                    <div style="font-weight:700;font-size:1.1em">
+                        <img src="../resource/icon_task.png">
+                        <label style="vertical-align:super;font-weight:700;font-size:1.5em;">今日作业</label>
+                    </div>
+                    <div style="height:80%" id="task" class="HidTxt">
+
+                    </div>
+                </div>
+                <div class="part">
+                    <div style="font-weight:700;font-size:1.1em">
+                        <img src="../resource/icon_sweep.png">
+                        <label style="vertical-align:super;font-weight:700;font-size:1.5em;">今日值日</label>
+                    </div>
+                    <div style="height:80%" id="txtZR">
+
+                    </div>
+                </div>
+                <div style="display:none" class="part4">
+                    <div style="height:20%;font-weight:700;font-size:1.1em">
+                        <img src="../resource/u871.svg" style="float:left">
+                        <label style="float:left;margin-left:15px;color:white;margin-top:5px">今日作业</label>
+                        <div class="currclock">
+                            <div class="clock" >
+                                <div class="clockWeek"></div>
+                                <div class="clockDate"></div>
+                            </div>
+                            <div class="clockTime">
+                            </div>
+                        </div>
+                    </div>
+                    <div style="height:80%;font-size:15px">
+                        <div class="homework" id="">
+                        </div>
+                        <div class="second">
+                            <img src="../resource/u876.svg" style="float:left;margin-top:-5px;">
+                            <label class="todaywork">今日值日</label>
+                            <label  class="ZR"></label>
+                        </div>
+                        <div class="third">
+                            <label class="newtitle"></label>
+                            <label class="newinfo"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="part">
+                    <div style="font-weight:700;font-size:1.1em">
+                        <img src="../resource/icon_exercise.png">
+                        <label style="vertical-align:super;font-weight:700;font-size:1.5em;">最新活动</label>
+                    </div>
+                    <div class="left">
+                        <div class="picinfo" style="display:none">
+                            <img src="" style="width:100%;height:100%;">
+                        </div>
+                        <img id="activityphoto" style="position:relative;" class="back">
+                    </div>
+                    <div class="right">
+                        <div class="righttitle" id="activitytitle" style="display:none;"></div>
+                        <div class="rightcontent activityintro" id="activitydetail"></div>
+                        <div class="pointer" style="text-align:right;display:none" onclick="changeurl('activity.html');">详情 ></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="Nav">
+            <div class="bottommenu" onclick="changeurl('classindex.html');" style="background-color:white;border-radius:15px;color:#625cd8;">主页</div>
+            <div class="bottommenu" onclick="changeurl('news.html');">新闻</div>
+            <div class="bottommenu" onclick="changeurl('activity.html');">活动</div>
+            <div class="bottommenu" onclick="changeurl('curriculum.html');">课表</div>
+            <div class="bottommenu" onclick="changeurl('member.html');">成员</div>
+            <div class="bottommenu" onclick="changeurl('task.html');">作业</div>
+            <div class="bottommenu" onclick="changeurl('cleanhealth.html');">值日</div>
+            <div class="bottommenu" onclick="changeurl('honor.html');">荣誉</div>
+            <div class="bottommenu" onclick="changeurl('recommend.html');">推荐</div>
+            <div class="bottommenu" style="float:right;width:4%" onclick="window.CallCSharpMethod('ShowSetForm','')"><img style="vertical-align:middle;height:35px" src="../resource/setup.png"></div>
+            <div class="bottommenu" style="float:right;width:4%" onclick="window.CallCSharpMethod('ReturnToDeskTop','');"><img style="vertical-align:middle;height:35px" src="../resource/return.png"></div>
+            <div class="bottommenu" style="float:right;width:4%" onclick="window.CallCSharpMethod('ShowSwitchMode','')"><img style="vertical-align:middle" src="../resource/modeswitching.png"></div>
+        </div>
+    </div>
+    <input type="hidden" id="hidActivityId">
+    <input type="hidden" id="hidNewsId">
+    <script src="../js/jquery-2.1.4.min.js"></script>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script src="../js/common.js"></script>
+    <script src="../js/dragula.js"></script>
+    <script src="../js/example.min.js"></script>
+    <script>
+        setTimeout(function(){
+            document.getElementsByTagName('body')[0].style.height = window.innerHeight+'px';
+            $("#Main").height(window.innerHeight);
+            $("#partlist").height(window.innerHeight-81-85);
+        },20);
+
+        //获取活动
+        function inittype() {
+            //加载活动分类
+            if (classInfo.classId == undefined) {
+                return;
+            }
+            jQuery.ajax({
+                type: "POST",
+                data: {"classid": classInfo.classId, "type": 0},
+                dataType: "text",
+                url: "/service/eclassbrand/getactivitylist",
+                success: function (result) {
+                    var obj = eval("(" + result + ")");
+                    //curr="<div onclick=\"choosetype(this,0)\" class=\"newtypechoose newtype\" style=\";margin-top:20px;\">所有新闻</div>";
+                    $.each(obj, function (i, item) {
+                        if (i == 0) {
+                            $("#hidActivityId").val(item.pkid);
+                            $("#activitytitle").html(item.title);
+                        }
+                    });
+                    initdetail();
+                },
+                error: function () {
+                }
+            });
+        }
+
+        //获取活动详情
+        function initdetail() {
+            //加载新闻分类
+            if (classInfo.classId == undefined) {
+                return;
+            }
+            jQuery("#jssor_1").html("");
+            var curr = "";
+            jQuery.ajax({
+                type: "POST",
+                data: {"activityid": $("#hidActivityId").val(), "key": ""},
+                dataType: "text",
+                url: "/service/eclassbrand/getactivitydetaillist",
+                success: function (result) {
+                    var obj = eval("(" + result + ")");
+                    //curr="<div onclick=\"choosetype(this,0)\" class=\"newtypechoose newtype\" style=\";margin-top:20px;\">所有新闻</div>";
+                    $.each(obj, function (i, item) {
+                        if (i == 0) {
+                            $("#activityphoto").attr("src","/"+item.photo);
+                            $("#activitydetail").html(item.describe);
+                        }
+                    });
+                },
+                error: function () {
+                }
+            });
+        }
+
+        //获取作业
+        function inittask(){
+            var today=new Date();
+            var yesterday = new Date(today.getTime() - 24*60*60*1000); //前一天
+            jQuery.ajax({
+                type: "POST",
+                data: {"classid":classInfo.classId,"begintime":yesterday.Format("yyyy-MM-dd")+" 00:00:00","endtime": today.Format("yyyy-MM-dd")+" 23:00:00" },
+                dataType: "text",
+                url: "/service/eclassbrand/gettasklist",
+                success: function (result) {
+                    var obj=eval("(" + result + ")");
+/*                    var currdate=today.Format("MM月dd日");
+                    $("#task").append("<div class=\"title\">今日"+typename+"作业（"+currdate+"）</div>\n");*/
+                    $.each(obj,function(i,item){
+                        var createtime=new Date(item.createtime);
+                        var typename;
+                        if(item.type==1)
+                        {
+                            typename="家庭";
+                        }
+                        else{
+                            typename="课后";
+                        }
+                        if(today.Format("yyyy-MM-dd")==createtime.Format("yyyy-MM-dd")) {
+                            jQuery("#task").append(" <div class='task'>\n" +
+                                "                            <div class=\"info HidTxt\"><span style='color:#347cea;margin-right:15px;font-weight:700;font-size:1.1em'>"+ item.subjectName +"</span>" + item.content.replace(item.subjectName + "：", "") + "</div>\n" +
+                                "                        </div>");
+                        }
+                        else{
+
+                        }
+                    });
+                },
+                error:function () {
+                }
+            });
+        };
+
+        var newsdata="";
+        //获取新闻列表
+        function initnewslist(){
+            InitClassInfo();
+            if(classInfo.classId==undefined){return;}
+            $("#studentcount").html(classInfo.studentcount+"人");
+            jQuery.ajax({
+                type: "POST",
+                data: {"categoryid":"0",classid:classInfo.classId,key:""},
+                dataType: "text",
+                url: "/service/eclassbrand/getnewslist",
+                success: function (result) {
+                    var obj=eval("(" + result + ")");
+                    newsdata="";
+                    $.each(obj,function(i,item){
+                        if(i==0){
+                            $("#hidNewsId").val(item.pkid);
+                        }
+                        else if(i<=4) {
+                            newsdata = newsdata + "<li onclick='newsclick("+ item.newstype +","+ item.pkid +");' class='HidTxt' style='line-height:50px;color:#5ca2ea'><span style='color:black'>" + item.title + "</span></li>";
+                        }
+                    });
+                    initnews();
+                },
+                error:function () {
+                }
+            });
+        }
+
+        //获取新闻详情
+        function initnews() {
+            jQuery.ajax({
+                type: "POST",
+                data: {"pkid": $("#hidNewsId").val()},
+                dataType: "text",
+                url: "/service/eclassbrand/getnews",
+                success: function (result) {
+                    var obj = eval("(" + result + ")");
+                    $("#newsphoto").attr("src","/"+obj.photo);
+                    $("#newsdetail").html("<li onclick='newsclick("+ obj.newstype +","+ obj.pkid +");' class='HidTxt' style='line-height:50px;color:#5ca2ea'><span style='color:black'>"+obj.title+"</span></li>"+newsdata);
+                },
+                error: function () {
+                }
+            });
+        }
+
+        function newsclick(typeid,pkid) {
+            changeurl("news.html","pkid="+pkid);
+        }
+
+        var mydate=new Date();
+        var myddy=mydate.getDay();//获取存储当前日期
+        var weekday=["7","1","2","3","4","5","6"];
+
+        //获取值日
+        function initclean(){
+            jQuery.ajax({
+                type: "POST",
+                data: {"classid":classInfo.classId,"beginday":"","endday": "" },
+                dataType: "text",
+                url: "/service/eclassbrand/getcleanhealthlist",
+                success: function (result) {
+                    var obj=eval("(" + result + ")");
+                    $.each(obj,function(i,item){
+                        if(item.day==weekday[myddy]) {
+                            var ht="<ul class='detail HidTxt' style='list-style: inside;text-align:left;font-size:1.1em;text-align:left'>";
+                            var items=item.content.split('<br/>');
+                            for (var k=0;k<items.length;k++){
+                                ht=ht+"<li class=\"HidTxt\" style='line-height:50px;color:#5ca2ea'><span style='color:black'>"+ items[k].toString() +"</span></li>"
+                            }
+                            ht=ht+"</ul>"
+                            $("#txtZR").html(ht);
+                        }
+                        //jQuery("#cleanHealthList").append("<td> <p><span style=\"text-decoration:none;\">"+item.content+"</span></p></td>");
+                    });
+                },
+                error:function () {
+                }
+            });
+        }
+
+
+        //获取课程
+        var curriculumData = [];
+        function initClassCurriclumData()
+        {
+            curriculumData = [];
+            var schoolId = classInfo.schoolId;
+            var classId = classInfo.classId;
+            if($.trim(classId) == "") return;
+            jQuery.ajax({
+                type: "POST",
+                data: {"schoolId":schoolId,"classId":classId},
+                dataType: "json",
+                url: "/service/eclassbrand/getSchoolClassCurriculumLists",
+                success: function (result) {
+                    curriculumData = result;
+                    initDataList();
+                },
+                error:function () {
+
+                }
+            });
+        }
+
+        //加载课程
+        function initDataList()
+        {
+            var data="<div class=\"subjectleft\" style='color:#0c83d6'><span class=' HidTxt' style='display:inline-block;width:30%;'>科目</span><span style='width:35%;vertical-align:top;' class=\"subjectdetail\">任课老师</span>"
+                + "<span class=\"subjectdetail HidTxt\" style='margin-left:0;width:35%;'>时间</span></div>";
+            var classId = classInfo.classId;
+            if($.trim(classId) == "") return;
+            jQuery.ajax({
+                type: "POST",
+                data: {"schoolId": classInfo.schoolId,"stageId":classInfo.stageId},
+                dataType: "json",
+                url: "/service/eclassbrand/getSchoolScheduleList",
+                success: function (result) {
+                    var isall=false;
+                    for(var i=0;i<result.length;i++) {
+                        var item = result[i];
+                        var currenti = false;
+                        for (var j = 0; j < item.weekTimeList.length; j++) {
+                            var item0 = item.weekTimeList[j];
+                            if (item0.week == weekday[myddy]) {
+                                if (CompareDate(item0.starttime, item0.endtime)) {
+                                    currenti = true;
+                                } else {
+                                    currenti = false;
+                                }
+                            }
+                        }
+                        if (i <= 7)
+                            data = data + getCurrName(weekday[myddy], item.weekTimeList, item.session, currenti);
+                    }
+                    $("#curriculum").html(data);
+                },
+                error:function () {
+
+                }
+            });
+        }
+
+        function getCurrName(week, weekTimeList, session,iscurr)
+        {
+            if(!iscurr) return  "";
+            var result = "";
+            for(var i=0; i<curriculumData.length; i++)
+            {
+                var item = curriculumData[i];
+                if(item.week == week && item.session == session)
+                {
+                    result = "<div class=\"subjectleft\"><span class=' HidTxt' style='display:inline-block;width:30%;'>"+ item.subjectName +"</span><span style='width:35%;vertical-align:top;' class=\"subjectdetail\">"+ item.teacherName +"</span>";
+                }
+            }
+
+            for(var i=0; i<weekTimeList.length; i++)
+            {
+                var item1 = weekTimeList[i];
+                if(item1.week == week)
+                {
+                    result = result+ "<span class=\"subjectdetail HidTxt\" style='margin-left:0;width:35%;'>"+ item1.starttime + "~" + item1.endtime +"</span></div>";
+                }
+            }
+
+            return result;
+        }
+
+        //判断课程时间
+        function CompareDate(t1,t2)
+        {
+            var date = new Date();
+            var dangqian=date.toLocaleTimeString('chinese',{hour12:false});
+
+            var dq=dangqian.split(":");
+            var a = t1.split(":");
+
+            if(parseInt(dq[0])>=12){
+                $("#subjecttitle").html("下午课程");
+            } else {
+                $("#subjecttitle").html("上午课程");
+            }
+/*            var dqdq=parseInt(dq[0])*60+parseInt(dq[1]);
+            var aa=parseInt(a[0])*60+parseInt(a[1]);
+            var bb=parseInt(b[0])*60+parseInt(b[1]);*/
+
+            if((parseInt(dq[0])>=12&&parseInt(a[0])>=12)||(parseInt(dq[0])<=12&&parseInt(a[0])<=12)){
+                return true;
+            } else {
+                return  false;
+            }
+
+        }
+
+        //获取教师信息
+        function initteacher() {
+            jQuery.ajax({
+                type: "POST",
+                data: {"classid": classInfo.classId},
+                dataType: "text",
+                url: "/service/eclassbrand/getteacher",
+                success: function (result) {
+                    var obj = eval("(" + result + ")");
+                    $("#teacher").html(obj.name);
+                    $("#teacherimg").attr("src", "/" + obj.photo);
+                    $("#flag").html("<span style='color:#0077ca;'>格言：</span>"+obj.motto);
+                    $("#subject").html("<span style='color:#0077ca;'>科目：</span>"+obj.subject);
+                },
+                error: function () {
+                }
+            });
+        }
+
+        $(function () {
+            initnewslist();
+            inittask();
+            inittype();
+            initclean();
+            initClassCurriclumData();
+            initteacher();
+        });
+    </script>
+</body>
+</html>

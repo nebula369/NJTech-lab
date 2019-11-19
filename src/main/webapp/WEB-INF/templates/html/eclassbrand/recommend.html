@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>推荐</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <style>
+        .recommend .content   {
+            padding: 0% 2% 0% 2%;
+            font-family: "Arial Negreta", "Arial Normal", Arial;
+            font-style: normal; height: 78%;
+            margin-top: 1%;
+        }
+        .recommend .content .list
+        {
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+            background-color: #dae6fc;
+        }
+        .recommend .content .list .recommenditem {
+            float: left;
+            margin: 2% 1% 1% 2%;
+            width: 30%;
+            height: 42%;
+        }
+        .recommend .content .list .recommenditem .left {
+            float: left;
+            height: 100%;
+            width: 35%;
+        }
+        .recommend .content .list .recommenditem .right {
+            float: right;
+            width:63%;
+            height: 100%;}
+        .recommend .content .list .recommenditem .left .cover {
+            height: 100%;
+        }
+        .recommend .content .list .recommenditem .left .cover img {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+        }
+        .recommend .content .list  .recommenditem .right .reason
+        {
+            height: 80%;
+            margin: 2% 2% 2% 0;
+        }
+        .tip
+        {
+            color: #0c83d3;
+        }
+        .recommend .content .list  .recommenditem .right  .info{
+            color: #4e4d4b;
+            text-overflow: -o-ellipsis-lastline;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 7;
+            -webkit-box-orient: vertical;
+            text-indent: 35px;
+        }
+        .recommend .content .list  .recommenditem .right .name{
+            font-weight: 900;
+            font-size: 20px;
+            color: #4e4d4b;
+            margin-top: 2%;
+        }
+        .recommend .content .list  .recommenditem .right .author{
+            /*  padding-left: 5%;*/
+            text-align: center;
+        }
+        .recommend .pager{
+            text-align: center;
+        }
+        .recommend .pager div{
+            border: 1px solid white;
+            color: white;
+            cursor: pointer;
+            width: 49px;
+            height: 32px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-left: 20px;
+            line-height: 32px;
+        }
+        .recommend .pager .SelectedNavItem{
+            color: white;
+            background-color: rgba(244, 184, 29, 1);
+            border: 1px solid rgba(244, 184, 29, 1);
+            cursor: pointer;
+            width: 49px;
+            height: 32px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-left: 20px;
+            font-size: 20px;
+            vertical-align: top;
+        }
+        .detaicontent{
+            background-color: white;
+          /*  position: fixed;*/
+            margin: auto;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            z-index: 1;
+            height: 100%;
+            width: 100%;
+            font-size: 20px;
+        }
+        .detaicontent .showDetail .left
+        {
+            float: left;
+            width: 25%;
+        }
+        .detaicontent .showDetail .left  img{
+            background-color: white;
+            width: 80%;
+        }
+        .detaicontent .showDetail .right
+        {
+            float: right;
+            width: 75%;
+        }
+        .detaicontent .showDetail .right .info {
+            text-indent: 35px;
+            color: #4e4d4b;
+        }
+    </style>
+</head>
+<body onload="clock()">
+<!--主题内容开始-->
+<div id="Main" class="Main recommend" >
+    <!--头部开始 -->
+    <div class="classinfo">
+        <div class="classname" style="font-size:40px;"></div>
+        <div class="peoplename">总人数：</div>
+        <div class="peoplecount" id="studentcount"></div>
+        <div class="currclock">
+            <div class="clockTime">
+            </div>
+            <div class="clock" >
+                <div class="clockDate"></div>
+                <div class="clockWeek"></div>
+            </div>
+        </div>
+    </div>
+    <!--头部结束 -->
+    <!--内容开始 -->
+    <div class="content" >
+        <div class="list" >
+            <div  style="height: 85%;padding: 2% 1% 0 1%" >
+                <div id="recommendlist" style="height: 100%;width: 100%;">
+
+                </div>
+            </div>
+            <div class="operat" id="operat" style="height: 10%">
+                <div style="float: right; margin-right: 10%;">
+                            <span class="prev">
+                                <img  class="previmg" src="../resource/btn_left_n.png">
+                            </span>
+                    <span class="size" style="vertical-align: super;color: #666666;font-size: 25px;">
+                                        <span class="pageIndex" id="pageIndex" style="color: #559de9"> 1</span>  / <span class="pagecount" id="pagecount" > 1</span>
+                              </span>
+                    <span class="next" >
+                                  <img   class="nextimg"  src="../resource/btn_right_n.png" >
+                            </span>
+                </div>
+            </div>
+            <div class="pager" id="pager" style="height: 10%"></div>
+        </div>
+    </div>
+
+    <!--结束结束-->
+    <!--导航开始-->
+    <div class="Nav" style="">
+        <div class="bottommenu" onclick="changeurl('classindex.html');">主页</div>
+        <div class="bottommenu" onclick="changeurl('news.html');">新闻</div>
+        <div class="bottommenu" onclick="changeurl('activity.html');">活动</div>
+        <div class="bottommenu" onclick="changeurl('curriculum.html');">课表</div>
+        <div class="bottommenu" onclick="changeurl('member.html');" >成员</div>
+        <div class="bottommenu" onclick="changeurl('task.html');">作业</div>
+        <div class="bottommenu"  onclick="changeurl('cleanhealth.html');"  >值日</div>
+        <div class="bottommenu" onclick="changeurl('honor.html');" >荣誉</div>
+        <div class="bottommenu" onclick="changeurl('recommend.html');"  style="background-color:white;border-radius:15px;color:#625cd8;">推荐</div>
+        <div class="bottommenu" style="float:right;width:70px" onclick="window.CallCSharpMethod('ShowSetForm','')"><img style="vertical-align:middle;height:35px" src="../resource/setup.png"></div>
+        <div class="bottommenu" style="float:right;width:70px" onclick="window.CallCSharpMethod('ReturnToDeskTop','');"><img style="vertical-align:middle;height:35px" src="../resource/return.png"></div>
+        <div class="bottommenu" style="float:right;width:70px" onclick="window.CallCSharpMethod('ShowSwitchMode','')"><img style="vertical-align:middle" src="../resource/modeswitching.png"></div>
+    </div>
+    <!--导航结束-->
+</div>
+<!--主题内容结束-->
+
+<!--详细信息开始-->
+<div  class="detaicontent" style="display: none" id="detaicontent">
+    <div style="">
+        <div id="floatcloase" style="height: 10%;position: absolute; top: 2%;"><img src="../resource/close.png"  style="cursor: pointer" onclick="hideDetail()"/></div>
+        <div class="showDetail" id="showDetail" style="margin: 3%;">
+        </div>
+    </div>
+</div>
+<!--详细信息结束-->
+<script src="../js/jquery-2.1.4.min.js"></script>
+<script src="../js/jquery-1.11.3.min.js"></script>
+<script src="../js/common.js"></script>
+<script>
+    var RecommendList;
+    var PageSize=6;
+    var pageIndex=1;
+    var pageCount;
+    $(function () {
+        InitClassInfo();
+        //加载荣誉分类
+        if(classInfo.classId==undefined){return;}
+        jQuery("#honorCategoryList").html("");
+        jQuery.ajax({
+            type: "POST",
+            data: {"classid":classInfo.classId},
+            dataType: "text",
+            url: "/service/eclassbrand/getrecommendlist",
+            success: function (result) {
+                var obj=eval("(" + result + ")");
+                RecommendList=obj;
+                var  totalCount=(parseInt(obj.length));
+                if(totalCount>0)//显示分页
+                {
+                    if (totalCount % PageSize == 0)
+                    {
+                        pageCount =parseInt(totalCount / PageSize) ;
+                    }
+                    else
+                    {
+                        pageCount = parseInt(totalCount / PageSize) + 1;
+                    }
+                    pageCount==0?1: pageCount;//为0默认为1
+                    $("#pagecount").html(pageCount);
+                    initPage();
+                    initRecommend();
+                }
+            },
+            error:function () {
+            }
+        });
+        $("#operat .prev").click(function () {
+            if(pageIndex-1==0)return;
+            pageIndex=pageIndex-1;
+            $("#pageIndex").html(pageIndex);
+            initRecommend();  initPage();
+        });
+
+        $("#operat .next").click(function () {
+            if (pageIndex+1 > pageCount)return;
+            pageIndex=pageIndex+1;
+            $("#pageIndex").html(pageIndex);
+            initRecommend();  initPage();
+        });
+    });
+
+    function  initPage()
+    {
+        if(pageIndex-1==0)
+        {
+            $(".previmg").attr("src","../resource/btn_left_n.png");
+        }
+        else{
+            $(".previmg").attr("src","../resource/btn_left_s.png");
+        }
+        if (pageIndex+1 > pageCount)
+        {
+            $(".nextimg").attr("src","../resource/btn_right_n.png");
+        }
+        else{
+            $(".nextimg").attr("src","../resource/btn_right_s.png");
+        }
+    }
+
+    function initRecommend()
+    {
+        var start= (pageIndex - 1) * PageSize;
+        var end=(pageIndex * PageSize);
+        jQuery("#recommendlist").html("");
+        $.each(RecommendList,function(i,item){
+            if(start==0)
+            {
+                if(i<=end-1)//0-5
+                {
+                    craterecommendlist(item);
+                }
+            }
+            else  if(i>start-1&&i<end)//只显示6条数据
+            {
+                craterecommendlist(item);
+            }
+        });
+    }
+    function craterecommendlist(item)
+    {
+        jQuery("#recommendlist").append("<div class=\"recommenditem\">\n" +
+            "    <div class=\"left\" >\n" +
+            "      <div class=\"cover\"  onclick='showDetail("+item.pkid+")'  style='cursor: pointer'> <img src='/"+item.picture+"' style='background-color: white;'></div>\n" +
+            "    <div class=\"author\" ><span class='tip' style='float: left'> 推荐人：</span><span class='info'>"+item.userName+"</span></div>\n" +
+            "    </div> <div class=\"right\">\n" +
+            "        <div class=\"name\" >"+item.name+"</div>\n" +
+            "    <div class=\"reason\" ><div class='tip'>推荐理由：</div><div class='info'>"+item.reason+"</div></div>\n" +
+            "</div>");
+    }
+    function hideDetail() {
+        $('#detaicontent').hide();
+        $('.recommend').show();
+    }
+    function showDetail(id)
+    {
+        $("#showDetail").html("");
+        $.each(RecommendList,function(i,item){
+            if(id==item.pkid)
+            {
+                $("#showDetail").html(  "    <div class=\"left\" >\n" +
+                    "      <div class=\"cover\" style='cursor: pointer'> <img src='/"+item.picture+"' style='background-color: white;'></div>\n" +
+                    "    <div class=\"author\" ><span class='tip' style='float: left'> 推荐人：</span><span class='info'>"+item.userName+"</span></div>\n" +
+                    "    </div> <div class=\"right\">\n" +
+                    "        <h1 class=\"name\" style=' color: #4e4d4b;' >"+item.name+"</h1>\n" +
+                    "    <div class=\"reason\" ><div class='tip'>推荐理由：</div><div class='info'>"+item.reason+"</div></div><br/>\n"+
+                    "    <div class=\"buyurl\" ><div class='tip'>购买网址：</div><div class='info'>"+item.buyurl+"</div></div><br/>\n"+
+                    "    <div class=\"detail\" ><div class='tip'>推荐详情：</div><div class='info'>"+item.detail+"</div></div>\n"
+                );
+            }
+        });
+        $('.recommend').hide();
+        $('#detaicontent').show();
+    }
+    $(document).ready(function () {
+        var menuYloc = $("#floatcloase").offset().top; //此ID为随着屏幕滚动div的ID
+        $(window).scroll(function () {
+            var offsetTop = menuYloc + $(window).scrollTop() + "px";
+            $("#floatcloase").animate({ top: offsetTop }, { duration: 600, queue: false }); //此ID为随着屏幕滚动div的ID
+        });
+    });
+    setTimeout(function(){
+        document.getElementsByTagName('body')[0].style.height = window.innerHeight+'px';
+        $("#Main").height(window.innerHeight);
+    },20);
+</script>
+</body>
+</html>

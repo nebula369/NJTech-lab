@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/dragula.css">
+    <title>主页</title>
+    <style>
+        .activityintro{
+            text-overflow: -o-ellipsis-lastline;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 7;
+            -webkit-box-orient: vertical;
+            text-indent: 35px;
+        }
+    </style>
+</head>
+<body style="margin:0" class="classindex" onload="clock()">
+    <div id="Main" class="Main" style="background:none;background-color:white;" data-bind="component: {name: 'dashboard-grid', params: $data}">
+        <div class="classinfo" style="height:auto">
+            <div><img src="img/logo.png"></div>
+            <div class="currclock">
+                <div class="clockTime" style="color:#026ad1;font-size:50px;bottom:25px">
+                </div>
+                <div class="clock" style="right:40px;font-size:25px;bottom:25px" >
+
+                    <div class="clockWeek" style="color:#026ad1;"></div>
+                    <div class="clockDate" style="color:#026ad1;"></div>
+                </div>
+            </div>
+        </div>
+        <div id="partlist" style="height:90%;background-color:#077fc2;position:relative">
+            <div style="position:absolute;left:0;width:80%;height:100%">
+                <div style="height:15%;line-height:120px;text-align:center;width:100%;color:white;font-size:55px;font-weight:700">质谱实验室</div>
+                <div style="width:90%;margin:auto;height:80%;background-color:white;border-radius:20px;position:relative;overflow-y:auto;">
+                    <div style="height:15%;width:100%;font-size:40px;text-align:center;color:white;line-height:100px;font-weight:700;background-color:#5eaadd">预约详情</div>
+                    <div style="overflow-y:auto;height:85%">
+                        <table style="width:100%;text-align:center">
+                            <tr>
+                                <td style="vertical-align:top">
+                                    <div style="height:15px"></div>
+                                    <div style="color:#078de9;font-size:30px">2019.07.14</div>
+                                    <div><span style="font-size:30px">化工学院</span><span style="margin-left:20px;font-size:30px">王老师</span><span style="margin-left:20px;font-size:30px">08:00-12:00</span></div>
+                                    <div><span style="font-size:30px">能源学院</span><span style="margin-left:20px;font-size:30px">杨老师</span><span style="margin-left:20px;font-size:30px">14:00-16:00</span></div>
+                                    <div><span style="font-size:30px">化工学院</span><span style="margin-left:20px;font-size:30px">王老师</span><span style="margin-left:20px;font-size:30px">16:00-18:00</span></div>
+                                </td>
+                                <td style="vertical-align:top">
+                                    <div style="height:15px"></div>
+                                    <div style="color:#078de9;font-size:30px">2019.07.14</div>
+                                    <div><span style="font-size:30px">化工学院</span><span style="margin-left:20px;font-size:30px">王老师</span><span style="margin-left:20px;font-size:30px">08:00-12:00</span></div>
+                                    <div><span style="font-size:30px">能源学院</span><span style="margin-left:20px;font-size:30px">杨老师</span><span style="margin-left:20px;font-size:30px">14:00-16:00</span></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="vertical-align:top">
+                                    <div style="height:15px"></div>
+                                    <div style="color:#078de9;font-size:30px">2019.07.14</div>
+                                    <div><span style="font-size:30px">化工学院</span><span style="margin-left:20px;font-size:30px">王老师</span><span style="margin-left:20px;font-size:30px">08:00-12:00</span></div>
+                                    <div><span style="font-size:30px">能源学院</span><span style="margin-left:20px;font-size:30px">杨老师</span><span style="margin-left:20px;font-size:30px">14:00-16:00</span></div>
+                                </td>
+                                <td style="vertical-align:top">
+                                    <div style="height:15px"></div>
+                                    <div style="color:#078de9;font-size:30px">2019.07.14</div>
+                                    <div><span style="font-size:30px">化工学院</span><span style="margin-left:20px;font-size:30px">王老师</span><span style="margin-left:20px;font-size:30px">08:00-12:00</span></div>
+                                    <div><span style="font-size:30px">能源学院</span><span style="margin-left:20px;font-size:30px">杨老师</span><span style="margin-left:20px;font-size:30px">14:00-16:00</span></div>
+                                    <div><span style="font-size:30px">化工学院</span><span style="margin-left:20px;font-size:30px">王老师</span><span style="margin-left:20px;font-size:30px">16:00-18:00</span></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="vertical-align:top">
+                                    <div style="height:15px"></div>
+                                    <div style="color:#078de9;font-size:30px">2019.07.14</div>
+                                    <div><span style="font-size:30px">化工学院</span><span style="margin-left:20px;font-size:30px">王老师</span><span style="margin-left:20px;font-size:30px">08:00-12:00</span></div>
+                                    <div><span style="font-size:30px">能源学院</span><span style="margin-left:20px;font-size:30px">杨老师</span><span style="margin-left:20px;font-size:30px">14:00-16:00</span></div>
+                                    <div><span style="font-size:30px">化工学院</span><span style="margin-left:20px;font-size:30px">王老师</span><span style="margin-left:20px;font-size:30px">16:00-18:00</span></div>
+                                </td>
+                                <td style="vertical-align:top">
+                                    <div style="height:15px"></div>
+                                    <div style="color:#078de9;font-size:30px">2019.07.14</div>
+                                    <div><span style="font-size:30px">化工学院</span><span style="margin-left:20px;font-size:30px">王老师</span><span style="margin-left:20px;font-size:30px">08:00-12:00</span></div>
+                                    <div><span style="font-size:30px">能源学院</span><span style="margin-left:20px;font-size:30px">杨老师</span><span style="margin-left:20px;font-size:30px">14:00-16:00</span></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="vertical-align:top">
+                                    <div style="height:15px"></div>
+                                    <div style="color:#078de9;font-size:30px">2019.07.14</div>
+                                    <div><span style="font-size:30px">化工学院</span><span style="margin-left:20px;font-size:30px">王老师</span><span style="margin-left:20px;font-size:30px">08:00-12:00</span></div>
+                                    <div><span style="font-size:30px">能源学院</span><span style="margin-left:20px;font-size:30px">杨老师</span><span style="margin-left:20px;font-size:30px">14:00-16:00</span></div>
+                                </td>
+                                <td style="vertical-align:top">
+                                    <div style="height:15px"></div>
+                                    <div style="color:#078de9;font-size:30px">2019.07.14</div>
+                                    <div><span style="font-size:30px">化工学院</span><span style="margin-left:20px;font-size:30px">王老师</span><span style="margin-left:20px;font-size:30px">08:00-12:00</span></div>
+                                    <div><span style="font-size:30px">能源学院</span><span style="margin-left:20px;font-size:30px">杨老师</span><span style="margin-left:20px;font-size:30px">14:00-16:00</span></div>
+                                    <div><span style="font-size:30px">化工学院</span><span style="margin-left:20px;font-size:30px">王老师</span><span style="margin-left:20px;font-size:30px">16:00-18:00</span></div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div style="position:absolute;right:0;width:20%;height:100%;background-color:#38508e">
+                <div style="width:100%;position:relative;margin-top:10px">
+                    <img src="img/img.png" style="width:100%">
+                </div>
+                <div>
+                    <div style="margin-top:20px;color:white;font-size:40px;text-align:center;font-weight:700;width:90%;text-align:center;height:70px;line-height:70px;padding-left:5%">质谱仪</div>
+                    <div style="margin-top:10px;color:white;font-size:25px;text-align:center;width:100%;text-align:center;height:40px;line-height:40px">
+                        <div style="display:inline-block;width:90%;text-align:left;padding-left:5px">
+                            质谱仪又称质谱计。分离和检测不同同位素的仪器。即根据带电粒子在电磁场中能够偏转的原理，按物质原子、分子或分子碎片的质量差异进行分离和物质组成的一类仪器。
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="background-color:#0c59c0;height:81px">
+            <div class="" style="color:#ffce00;line-height:81px;font-size:30px;float:left;margin-left:50px;">通知：7月11日下午，实验室将进行卫生整合，请各位老师不要进行预约！</div>
+            <div class="bottommenu" style="float:right;line-height:56px;margin-right:25px;font-size:40px;color:#009fe5;background-color:white;margin-top:15px;border-radius:15px;width:140px;text-align:center;" onclick="window.location.href='labindex.html'">返回</div>
+        </div>
+    </div>
+    <input type="hidden" id="hidActivityId">
+    <input type="hidden" id="hidNewsId">
+    <script src="../js/jquery-2.1.4.min.js"></script>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script src="../js/common.js"></script>
+    <script src="../js/dragula.js"></script>
+    <script src="../js/example.min.js"></script>
+    <script>
+        setTimeout(function(){
+            document.getElementsByTagName('body')[0].style.height = window.innerHeight+'px';
+            $("#Main").height(window.innerHeight);
+            $("#partlist").height(window.innerHeight-124-81);
+        },20);
+    </script>
+</body>
+</html>

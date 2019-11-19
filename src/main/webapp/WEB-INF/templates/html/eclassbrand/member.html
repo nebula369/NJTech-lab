@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>荣誉</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <style>
+        img{
+            border-radius: 10px;
+        }
+        .member  .content{
+            height: 78%;
+        }
+        .member  .content .contenttable .contentlist .left .title{
+            height: 70px;
+            line-height: 70px;
+            color: #3399ff;
+            font-size: 20px;
+            font-weight: 700;
+            margin: 2% 0 0 5%;
+        }
+        .member  .content .contenttable .contentlist .left .info{ margin: 0;}
+        .member  .content .contenttable .contentlist .left .info ul{ margin: 0; list-style: none;padding: 0;}
+        .member  .content .contenttable .contentlist .left .info li{margin: 0 0 2% 0;height: 24%}
+        .member  .content .contenttable .contentlist .left .info li  .userimg
+        {
+            float: left;
+            width: 26%;
+            height: 100%;
+            position: relative;
+            left: 2%;
+        }
+        .member  .content .contenttable .contentlist .left .info li  .userinfo {
+            float: left;
+            width: 65%;
+            height: 100%;
+            border-bottom: 1.3px solid #76cae1;
+        }
+        .member  .content .contenttable .contentlist .left .info li  .userimg .part1img{width:100%;height:100%;}
+        .member  .content .contenttable .contentlist .left .info li  .part1user{margin-top: 5%;}
+        .operat{
+            /* margin-top: -3%; */
+            height: 50px;
+            text-align: center;
+            color: white;
+            font-size: 25px;
+            cursor: pointer;
+            line-height: 50px;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+        .studentitem{
+            float: left;
+            padding: 5px;
+            text-align: center;
+            color: white;
+            position: relative;
+            margin: 0 0.5% 0.5% 0.5%;
+        }
+        .name{
+            color: #0f91cb;
+            font-size: 22px !important;
+            margin-bottom: 5%;
+        }
+        .subject{
+            margin-bottom: 2%;
+        }
+        .userimg .img{
+            border-radius:  8px !important;
+        }
+        .username{
+            position: absolute;
+            bottom: 10px;
+            height: 20%;
+            width: 87px;
+            border-radius: 0 0 8px 8px;
+            text-align: center;
+            background-color: rgba(0,0,0,0.5);
+            font-size: 14px;
+        }
+        .username label{
+            vertical-align: -webkit-baseline-middle;
+        }
+    </style>
+</head>
+<body onload="clock()">
+<!--主题内容开始-->
+<div id="Main" class="Main member" >
+    <!--头部开始 -->
+    <div class="classinfo">
+        <div class="classname" style="font-size:40px;"></div>
+        <div class="peoplename">总人数：</div>
+        <div class="peoplecount" id="studentcount"></div>
+        <div class="currclock">
+            <div class="clockTime">
+            </div>
+            <div class="clock" >
+                <div class="clockDate"></div>
+                <div class="clockWeek"></div>
+            </div>
+        </div>
+    </div>
+    <!--头部结束 -->
+    <!--内容开始 -->
+    <div class="content">
+        <div class="contenttable" style="padding: 1% 2%;height: 100%;">
+            <table class="contentlist" style="width: 100%;height: 100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td style="width: 30%;height:100%;vertical-align: top; position: relative; background-color:#dae6fc; border-radius: 15px;" class="left" >
+                        <div class="title">
+                            <div style="font-weight:700;font-size:20px">
+                                <img src="../resource/icon_teacher.png">
+                                <label style="vertical-align:super;font-weight:700;font-size:30px">任课老师</label>
+                            </div>
+                        </div>
+                        <div class="info" style="height: 77%">
+                            <ul id="teacherList" class="teacherList" style="height: 100%; ">
+                            </ul>
+                        </div>
+                        <div class="operat" id="operat" style="height: 10%">
+                            <div style="float: right; margin-right: 10%; margin-top: 2%;">
+                            <span class="prev">
+                                <img  class="previmg" src="../resource/btn_left_n.png">
+                            </span>
+                                <span class="size" style="vertical-align: super;color: #666666;font-size: 25px;">
+                                        <span class="pageIndex" id="pageIndex" style="color: #559de9"> 1</span>  / <span class="pagecount" id="pagecount" > 2</span>
+                              </span>
+                                <span class="next" >
+                                  <img   class="nextimg"  src="../resource/btn_right_n.png" >
+                            </span>
+                            </div>
+                        </div>
+                    </td>
+                    <td style="height:100%;width: 1%"></td>
+                    <td style="width: 69%;height:100%;font-size: 16px;font-weight: 100;vertical-align: top;overflow: hidden; background-color: #dae6fc; border-radius: 15px;" >
+                        <div class="title" style="border-radius: 28px 28px 0 0; height: 63px;line-height: 63px; color: #2c8deb; font-size: 24px; font-weight: 700;">
+                            <label style="margin-left: 2.5%;">学生</label>
+                            <label id="student"></label>
+                        </div>
+                        <div class="info" id="studentList" style="height: 91.5%; margin: 0% 1.5% 0% 1.5%;">
+
+                        </div>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+    <!--结束结束-->
+    <!--导航开始-->
+    <div class="Nav" style="">
+        <div class="bottommenu" onclick="changeurl('classindex.html');">主页</div>
+        <div class="bottommenu" onclick="changeurl('news.html');">新闻</div>
+        <div class="bottommenu" onclick="changeurl('activity.html');">活动</div>
+        <div class="bottommenu" onclick="changeurl('curriculum.html');">课表</div>
+        <div class="bottommenu" onclick="changeurl('member.html');" style="background-color:white;border-radius:15px;color:#625cd8;">成员</div>
+        <div class="bottommenu" onclick="changeurl('task.html');">作业</div>
+        <div class="bottommenu"  onclick="changeurl('cleanhealth.html');"  >值日</div>
+        <div class="bottommenu" onclick="changeurl('honor.html');" >荣誉</div>
+        <div class="bottommenu" onclick="changeurl('recommend.html');">推荐</div>
+        <div class="bottommenu" style="float:right;width:70px" onclick="window.CallCSharpMethod('ShowSetForm','')"><img style="vertical-align:middle;height:35px" src="../resource/setup.png"></div>
+        <div class="bottommenu" style="float:right;width:70px" onclick="window.CallCSharpMethod('ReturnToDeskTop','');"><img style="vertical-align:middle;height:35px" src="../resource/return.png"></div>
+        <div class="bottommenu" style="float:right;width:70px" onclick="window.CallCSharpMethod('ShowSwitchMode','')"><img style="vertical-align:middle" src="../resource/modeswitching.png"></div>
+    </div>
+    <!--导航结束-->
+</div>
+<!--主题内容结束-->
+
+<script src="../js/jquery-2.1.4.min.js"></script>
+<script src="../js/jquery-1.11.3.min.js"></script>
+<script src="../js/common.js"></script>
+<script>
+    var studentList="";
+    var teacherList="";
+    var PageSize=4;
+    var pageIndex=1;
+    var pageCount;
+    //加载数据
+    $(function () {
+        InitClassInfo();
+        if(classInfo.classId==undefined){return;}
+        /*加载教师*/
+        jQuery("#teacherList").html("");
+        jQuery.ajax({
+            type: "POST",
+            data: {"classid":classInfo.classId},
+            dataType: "text",
+            url: "/service/eclassbrand/getteacherlist",
+            success: function (result) {
+                var obj=eval("(" + result + ")");
+                teacherList=obj;
+                var  totalCount=(parseInt(obj.length));
+                if(totalCount>0)//显示分页
+                {
+                    if (totalCount % PageSize == 0)
+                    {
+                        pageCount =parseInt(totalCount / PageSize) ;
+                    }
+                    else
+                    {
+                        pageCount = parseInt(totalCount / PageSize) + 1;
+                    }
+                    pageCount==0?1: pageCount;//为0默认为1
+                    $("#pagecount").html(pageCount);
+                    initPage();
+                    initTeacherList();
+                }
+            },
+            error:function () {
+            }
+        });
+         /*加载学生*/
+        jQuery("#studentList").html("");
+        jQuery.ajax({
+            type: "POST",
+            data: {"classid":classInfo.classId},
+            dataType: "text",
+            url: "/service/eclassbrand/getstudentlist",
+            success: function (result) {
+                var obj=eval("(" + result + ")");
+               // studentList=obj;
+                $.each(obj,function(i,item){
+                    jQuery("#studentList").append(" <div class='studentitem'><div class='userimg'><img src=\"/"+item.photo+"\" width='87px' height='120px' onerror=\"javascript:this.src='/assets/lib/images/avatars/avatar2.png';\"></div><div class='username'><label>"+item.name+"</label></div></div>");
+                });
+            },
+            error:function () {
+            }
+        });
+
+        $("#operat .prev").click(function () {
+            if(pageIndex-1==0)return;
+            pageIndex=pageIndex-1;
+            $("#pageIndex").html(pageIndex);
+            initTeacherList();  initPage();
+        });
+        /*分页*/
+        $("#operat .next").click(function () {
+            if (pageIndex+1 > pageCount)return;
+            pageIndex=pageIndex+1;
+            $("#pageIndex").html(pageIndex);
+            initTeacherList();  initPage();
+        });
+    });
+    function  initPage()
+    {
+        if(pageIndex-1==0)
+        {
+            $(".previmg").attr("src","../resource/btn_left_n.png");
+        }
+        else{
+            $(".previmg").attr("src","../resource/btn_left_s.png");
+        }
+        if (pageIndex+1 > pageCount)
+        {
+            $(".nextimg").attr("src","../resource/btn_right_n.png");
+        }
+        else{
+            $(".nextimg").attr("src","../resource/btn_right_s.png");
+        }
+    }
+    function initTeacherList()
+    {
+        var start= (pageIndex - 1) * PageSize;
+        var end=(pageIndex * PageSize);
+        $("#teacherList").html("");
+        $.each(teacherList,function(i,item){
+            if(start==0)
+            {
+                if(i<=end-1)//0-2
+                {
+                    createTeacherList(item);
+                }
+            }
+            else  if(i>start-1&&i<end)//只显示4条数据
+            {
+                createTeacherList(item);
+            }
+        });
+    }
+
+    function createTeacherList(item)
+    {
+        jQuery("#teacherList").append(" <li>\n" +
+            "                                    <div class=\"userimg\">\n" +
+            "                                       <div class='part1img'> <img style='width:70%;height:90%;position:absolute' src=\"/" + item.photo + "\" onerror=\"javascript:this.src='/assets/lib/images/avatars/avatar2.png';\"></div></div>\n" +
+            "                                    <div class=\"userinfo\">\n" +
+            "                                       <div class='part1user'> <div class='name'>  " + item.name + "</div>\n" +
+            "                                        <div class='subject'> 任教： " + item.subject + "</div>\n" +
+            "                                        <div class='motto'>格言：" + item.motto + "</div>\n" +
+            "                                    </div></div>\n" +
+            "                                </li>");
+    }
+
+    //加载荣誉
+    setTimeout(function(){
+        document.getElementsByTagName('body')[0].style.height = window.innerHeight+'px';
+        $("#Main").height(window.innerHeight);
+    },20);
+</script>
+</body>
+</html>

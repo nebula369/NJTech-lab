@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>考场</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <style>
+        .examindex .content{color: white; font-family: 'Arial Normal', 'Arial';}
+        /*左边顶部*/
+        .examindex .content .leftinfo .lefttop{width:90%;height:20%;border-radius:15px;background-color:rgba(24,94,126,0.6);position:absolute;top:0;left:6%}
+        .examindex .content .leftinfo .lefttop .timeinfo .title{height:30%;font-weight: 400;font-style: normal;font-size: 28px; color: #14BEE9; margin: 4% 0 0 4%;}
+        .examindex .content .leftinfo .lefttop  .timeinfo .info{height:70%;text-align: center;font-weight: 400;font-style: normal; font-size: 72px;color: #FFE74A;}
+        .examindex .content .leftinfo .lefttop  .timeinfo .begin{ position: absolute;left: 0;right: 0; top: 30%;text-align: center;font-weight: 400;font-style: normal; font-size: 50px;color: #FFE74A;}
+        /*左边中间*/
+        .examindex .content .leftinfo .leftcontent .info .examineeList{font-size: 20px;  font-weight: 100;  margin: 4%;}
+        .examindex .content .leftinfo .leftcontent .info .examineeList .studentitem{float: left;    padding-right: 5%; }
+        .examindex .content .leftinfo .leftcontent{width: 90%; height: 66%; border-radius: 15px; background-color: rgba(24,94,126,0.6);  position: absolute; top: 22%; left: 6%;}
+        /*左边底部*/
+        .examindex .content .leftinfo .leftbottom{width:90%;height:10%;border-radius:15px;background-color:rgba(24,94,126,0.6);position:absolute;bottom:0;left:6%}
+        .Moved{
+            background: rgba(0,0,0,0.5);
+            position: fixed;
+            margin: auto;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            z-index: 1;
+            height: 80%;
+            width: 80%;}
+        .Moved .toDayExam{
+            width: 95%;
+           /* height: 90%;*/
+            background: white;
+            text-align: center;
+            margin: auto;
+            top: 5%;
+            position: absolute;
+            left: 0;
+            right: 0;
+        }
+        .Moved .toDayExam tr{
+            height: 50px;
+        }
+    </style>
+</head>
+<body onload="clock()">
+<!--主题内容开始-->
+<div id="Main" class="Main examindex" >
+    <!--头部开始 -->
+    <div class="classinfo">
+        <div class="schoolname" style="font-size: 40px;color: white; padding: 1%;"></div>
+        <div class="currclock">
+            <div class="clockTime">
+            </div>
+            <div class="clock" >
+                <div class="clockDate"></div>
+                <div class="clockWeek"></div>
+            </div>
+        </div>
+    </div>
+    <!--头部结束 -->
+    <div style="height:88%;width:100%;" class="content">
+        <div class="leftinfo" style="float:left;width:30%;height:100%;position:relative;">
+            <div class="lefttop">
+                <div style="float:left;height:100%;width:100%" class="timeinfo" id="timeInfo">
+                    <div class='begin' style="color: white" >该场次暂无考试</div>
+                    <!--<div class="title">距离考试还有</div><div class="info" >32：45</div>-->
+                </div>
+            </div>
+            <div class="leftcontent">
+                <div style="float:left;height:100%;width:100%; font-weight: 700;font-style: normal; font-size: 23px;color: #FDFCFD;">
+                    <div class="title" style="height: 10%; margin: 4% 0 0 4%;  position: relative;">
+                        <img src='../resource/u434.png' style="position: absolute; top: 0;"/>
+                        <span style="position: absolute;top: 0; left: 50px;">考试名单</span>
+                     </div>
+                    <div class="info" style="height: 90%">
+                        <div id="examineeList" class="examineeList"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="leftbottom">
+                <div style="height: 100%; width: 100%;font-weight: 400;font-style: normal;font-size: 20px;color: #FDFCFD">
+                    <div style="float:left;margin-top: 6%;margin-left: 6%;position: relative;width: 30%;cursor: pointer" onclick="window.CallCSharpMethod('ShowSwitchMode','')" >
+                       <img src='../resource/modeswitching.png' style=" height: 35px;"/>
+                        <span style="position: absolute;left:30% ">模式切换</span>
+                    </div>
+                    <div style="float:right;margin-top: 6%;position: relative;width: 40%;cursor: pointer" onclick="MovedShow()">
+                         <img src='../resource/u1546.png'/>
+                         <span  style="position: absolute;left: 30%">今日考试安排</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="rightinfo" style="float:left;width:70%;height:100%;position:relative;">
+            <div class="rightdiv" style="  width:97.5%;height:100%;border-radius:15px;background-color:rgba(24,94,126,0.6);position:absolute;font-weight: 400;font-style: normal; font-size: 120px; color: #FDFCFD; text-align: center;">
+                <div class="examPlanList" id="examPlanList" style="position: absolute;left: 0;right: 0;top: 25%;" ></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--主题内容结束-->
+<!--今日考试数据列表开始-->
+<div  class="Moved" style="display: none" id="Moved">
+    <div style="height: 10%;position: absolute; right: 1%;top: 2%;"><img src="../resource/close.png"  style="cursor: pointer" onclick="MovedShow()"/></div>
+    <div  style=" height: 90%;position: absolute; width: 100%; top:5%;">
+        <table  class="toDayExam"  cellpadding="0" cellspacing="0" border="0">
+            <tbody id="toDayExamList">
+            <tr style="opacity: 0.9;background-color: #a7d9f7;">
+                <th width="20%">考试时间</th>
+                <th width="20%">科目</th>
+                <th width="20%">年级专业</th>
+                <th width="20%">监考人员</th>
+                <th width="20%">人数</th>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<!--今日考试数据列表结束-->
+<script src="../js/jquery-2.1.4.min.js"></script>
+<script src="../js/jquery-1.11.3.min.js"></script>
+<script src="../js/common.js"></script>
+<script>
+    var examPlanList="";
+    $(function(){
+        InitClassInfo();
+        initToDayExamPlan();
+    });
+    function MovedShow() {
+        if($('#Moved').is(':hidden')){
+            $('#Moved').show();
+            //如果隐藏时。。。
+        }else{
+            $('#Moved').hide();
+            //如果显示时。。。
+        }
+    }
+    function initToDayExamPlan() {
+        if(classInfo.spaceId==undefined){return;}
+        //获取今日考试
+        jQuery.ajax({
+            type: "POST",
+            data: {"spaceid":classInfo.spaceId},
+            dataType: "text",
+            url: "/service/eclassbrand/getexamplanlist",
+            success: function (result) {
+                var obj=eval("(" + result + ")");
+                examPlanList=obj;
+                $.each(obj,function(i,item){
+                    var starttime=new Date(item.starttime);
+                    var endtime=new Date(item.endtime);
+                    var time=starttime.Format("HH:mm") +"～"+endtime.Format("HH:mm");
+                    jQuery("#toDayExamList").append("  <tr>\n" +
+                        "         <td>"+time+"</td>\n" +
+                        "         <td>"+item.subject+"</td>\n" +
+                        "         <td>"+item.grade+"</td>\n" +
+                        "         <td>"+item.examiner+"</td>\n" +
+                        "         <td>"+item.usercount+"</td>\n" +
+                        "     </tr>");
+                });
+                //initCurrExamPlan();
+                examrefresh();
+            },
+            error:function () {
+            }
+        });
+    }
+     function  initCurrExamPlan()
+     {
+         //获取现在时间
+         var nowdate=new Date();
+         var isload=false;
+         //时间凌晨后重新加载当日数据
+         if(nowdate.getHours()==1||nowdate.getHours()==2)
+         {
+             initToDayExamPlan();
+         }
+         if(examPlanList!="")
+         {
+             for(var i = 0;i < examPlanList.length; i++){
+                 if(isload){continue;}
+                 var starttime=new Date(examPlanList[i].starttime);
+                 var endtime=new Date(examPlanList[i].endtime);
+                 if(nowdate>=starttime&&nowdate<endtime)//考试进行中信息
+                 {
+                     InitData(examPlanList[i],nowdate,starttime,endtime);
+                     isload=true;continue;
+                 }
+                 else {//下一节课信息
+                     var j=i-1;
+                     var k=i+1;
+                     if(j==-1&&nowdate<starttime)//第一节课，没有上节课信息，特殊处理
+                     {
+                        InitData(examPlanList[i],nowdate,starttime,endtime);
+                        isload=true;continue;
+                     }
+                    else if(k <examPlanList.length)
+                     {
+                         var nextstarttime=new Date(examPlanList[k].starttime);
+                         if(nowdate<nextstarttime&&nowdate<endtime) //当前时间小于下节课时间开始时间，大于本节课的结束时间
+                         {
+                             InitData(examPlanList[i],nowdate,starttime,endtime);
+                             isload=true;continue;
+                         }
+                  }
+                }
+           }
+        }
+     }
+
+    function InitData(examplan,nowdate,starttime,endtime)
+    {
+        $("#timeInfo").html("");
+        $("#examPlanList").html("");
+        initExaminee(examplan.pkid);
+        var time=starttime.Format("HH:mm") +"～"+ endtime.Format("HH:mm");
+        if(nowdate>=starttime)//当前时间大于开考时间
+        {
+            $("#timeInfo").html("<div class='begin'>该场次已开考</div>");
+        }
+        else{
+            var countdown=DateDifference(nowdate,starttime);
+            $("#timeInfo").html(" <div class=\"title\">距离考试还有</div><div class=\"info\" >"+countdown+"</div>");
+        }
+        $("#examPlanList").html("<div class='name'>"+examplan.examRoomName+"</div><div class='subject'>"+examplan.subject+"</div><div class='time'>"+time+"</div>");
+    }
+
+    function initExaminee(examplanid)
+    {
+        $("#examineeList").html("");
+        jQuery.ajax({
+            type: "POST",
+            data: {"examplanid":examplanid},
+            dataType: "text",
+            url: "/service/eclassbrand/getexamineelist",
+            success: function (result) {
+                var obj=eval("(" + result + ")");
+                studentList=obj;
+                $.each(obj,function(i,item){
+                    jQuery("#examineeList").append(" <div class='studentitem'><div>"+item.name+"</div></div>");
+                });
+            },
+            error:function () {
+            }
+        });
+    }
+    function  examrefresh(){
+        initCurrExamPlan();
+        setTimeout("examrefresh()", 60000);
+    }
+    setTimeout(function(){
+        document.getElementsByTagName('body')[0].style.height = window.innerHeight+'px';
+        $("#Main").height(window.innerHeight);
+    },20);
+</script>
+</body>
+</html>

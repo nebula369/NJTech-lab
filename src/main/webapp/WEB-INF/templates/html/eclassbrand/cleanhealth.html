@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>值日</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <style>
+        .cleanhealth  .content   {
+            font-family: "Arial Negreta", "Arial Normal", Arial;
+            font-style: normal;width: 90%;
+            margin: 25px auto auto;
+            height: 80%
+        }
+
+        .cleanhealth  .content .contenttable{height: 100%;}
+        .cleanhealth  .content .contenttable .contentlist  {  height: 100%;}
+        .cleanhealth  .content .contenttable .contentlist  table{
+            /*padding: 0 12% 0px 12%; */
+            background-color:#dae6fc;
+            font-size: 25px;
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+        }
+
+        .cleanhealth  .content .contenttable .contentlist th{
+            color: #2f87eb;
+            text-align: center;
+            font-weight: 400;
+            height: 80px;
+            border-bottom: 2px solid #99ccff;
+        }
+        .cleanhealth  .content .contenttable .contentlist td{
+            color: #666666;text-align: center}
+    </style>
+    <script src="../js/jquery-2.1.4.min.js" ></script>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script src="../js/common.js"></script>
+</head>
+<body onload="clock()">
+<!--主题内容开始-->
+<div id="Main" class="Main cleanhealth" >
+    <!--头部开始 -->
+    <div class="classinfo">
+        <div class="classname" style="font-size:40px;"></div>
+        <div class="peoplename">总人数：</div>
+        <div class="peoplecount" id="studentcount"></div>
+        <div class="currclock">
+            <div class="clockTime">
+            </div>
+            <div class="clock" >
+                <div class="clockDate"></div>
+                <div class="clockWeek"></div>
+            </div>
+        </div>
+    </div>
+    <!--头部结束 -->
+    <!--内容开始 -->
+    <div class="content">
+        <div class="contenttable">
+            <!--   <div class="contenthead"><span>卫生值日表</span></div>-->
+            <div class="contentlist">
+                <table class="" cellspacing="0">
+                    <tbody>
+                    <tr style="height:10%;">
+                        <th width="14%">周一</th>
+                        <th width="14%">周二</th>
+                        <th width="14%">周三</th>
+                        <th width="14%">周四</th>
+                        <th width="14%">周五</th>
+                        <th width="14%">周六</th>
+                        <th width="14%">周日</th>
+                    </tr>
+                    <tr id="cleanHealthList" style="vertical-align: top">
+                        <!--<td> <p><span style="text-decoration:none;">华长春</span></p><p><span style="text-decoration:none;">何侠</span></p><p><span style="text-decoration:none;">冯东侠</span></p><p><span style="text-decoration:none;">陈建新</span></p><p><span style="text-decoration:none;"><br></span></p></td>-->
+                        <!--<td> <p><span style="text-decoration:none;">华长春</span></p><p><span style="text-decoration:none;">何侠</span></p><p><span style="text-decoration:none;">冯东侠</span></p><p><span style="text-decoration:none;">陈建新</span></p><p><span style="text-decoration:none;"><br></span></p></td>-->
+                        <!--<td> <p><span style="text-decoration:none;">华长春</span></p><p><span style="text-decoration:none;">何侠</span></p><p><span style="text-decoration:none;">冯东侠</span></p><p><span style="text-decoration:none;">陈建新</span></p><p><span style="text-decoration:none;"><br></span></p></td>-->
+                        <!--<td> <p><span style="text-decoration:none;">华长春</span></p><p><span style="text-decoration:none;">何侠</span></p><p><span style="text-decoration:none;">冯东侠</span></p><p><span style="text-decoration:none;">陈建新</span></p><p><span style="text-decoration:none;"><br></span></p></td>-->
+                        <!--<td> <p><span style="text-decoration:none;">华长春</span></p><p><span style="text-decoration:none;">何侠</span></p><p><span style="text-decoration:none;">冯东侠</span></p><p><span style="text-decoration:none;">陈建新</span></p><p><span style="text-decoration:none;"><br></span></p></td>-->
+                        <!--<td> <p><span style="text-decoration:none;">华长春</span></p><p><span style="text-decoration:none;">何侠</span></p><p><span style="text-decoration:none;">冯东侠</span></p><p><span style="text-decoration:none;">陈建新</span></p><p><span style="text-decoration:none;"><br></span></p></td>-->
+                        <!--<td> <p><span style="text-decoration:none;">华长春</span></p><p><span style="text-decoration:none;">何侠</span></p><p><span style="text-decoration:none;">冯东侠</span></p><p><span style="text-decoration:none;">陈建新</span></p><p><span style="text-decoration:none;"><br></span></p></td>-->
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!--结束结束-->
+    <!--导航开始-->
+    <div class="Nav" style="">
+        <div class="bottommenu" onclick="changeurl('classindex.html');">主页</div>
+        <div class="bottommenu" onclick="changeurl('news.html');">新闻</div>
+        <div class="bottommenu" onclick="changeurl('member.html');">活动</div>
+        <div class="bottommenu" onclick="changeurl('curriculum.html');">课表</div>
+        <div class="bottommenu" onclick="changeurl('member.html');">成员</div>
+        <div class="bottommenu" onclick="changeurl('task.html');">作业</div>
+        <div class="bottommenu"  onclick="changeurl('cleanhealth.html');" style="background-color:white;border-radius:15px;color:#625cd8;">值日</div>
+        <div class="bottommenu" onclick="changeurl('honor.html');">荣誉</div>
+        <div class="bottommenu" onclick="changeurl('recommend.html');">推荐</div>
+        <div class="bottommenu" style="float:right;width:70px" onclick="window.CallCSharpMethod('ShowSetForm','')"><img style="vertical-align:middle;height:35px" src="../resource/setup.png"></div>
+        <div class="bottommenu" style="float:right;width:70px" onclick="window.CallCSharpMethod('ReturnToDeskTop','');"><img style="vertical-align:middle;height:35px" src="../resource/return.png"></div>
+        <div class="bottommenu" style="float:right;width:70px" onclick="window.CallCSharpMethod('ShowSwitchMode','')"><img style="vertical-align:middle" src="../resource/modeswitching.png"></div>
+    </div>
+    <!--导航结束-->
+</div>
+<!--主题内容结束-->
+
+
+<script>
+    $(function () {
+        InitClassInfo();
+        if(classInfo.classId==undefined){return;}
+        //昨天的时间
+        //  var endday=parseInt(new Date().getDay()) ; if (endday == 0) {endday=7;}
+        //  var beginday=endday-1; if (beginday == 0) {beginday=1;}
+        jQuery("#cleanHealthList").html("");
+        jQuery.ajax({
+            type: "POST",
+            data: {"classid":classInfo.classId,"beginday":"","endday": "" },
+            dataType: "text",
+            url: "/service/eclassbrand/getcleanhealthlist",
+            success: function (result) {
+                var obj=eval("(" + result + ")");
+                $.each(obj,function(i,item){
+                    jQuery("#cleanHealthList").append("<td> <p><span style=\"text-decoration:none;line-height: 3\">"+item.content+"</span></p></td>");
+
+                });
+            },
+            error:function () {
+            }
+        });
+    });
+    setTimeout(function(){
+        document.getElementsByTagName('body')[0].style.height = window.innerHeight+'px';
+        $("#Main").height(window.innerHeight);
+    },20);
+</script>
+</body>
+</html>

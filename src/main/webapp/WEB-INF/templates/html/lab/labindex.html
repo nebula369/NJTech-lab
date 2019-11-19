@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/dragula.css">
+    <title>主页</title>
+    <style>
+        .activityintro{
+            text-overflow: -o-ellipsis-lastline;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 7;
+            -webkit-box-orient: vertical;
+            text-indent: 35px;
+        }
+    </style>
+</head>
+<body style="margin:0" class="classindex" onload="clock()">
+    <div id="Main" class="Main" style="background:none;background-color:white;" data-bind="component: {name: 'dashboard-grid', params: $data}">
+        <div class="classinfo" style="height:auto">
+            <div><img src="img/logo.png"></div>
+            <div class="currclock">
+                <div class="clockTime" style="color:#026ad1;font-size:50px;bottom:25px">
+                </div>
+                <div class="clock" style="right:40px;font-size:25px;bottom:25px" >
+
+                    <div class="clockWeek" style="color:#026ad1;"></div>
+                    <div class="clockDate" style="color:#026ad1;"></div>
+                </div>
+            </div>
+        </div>
+        <div id="partlist" style="height:90%;background-color:#077fc2;position:relative">
+            <div style="position:absolute;left:0;width:80%;height:100%">
+                <div style="height:15%;line-height:120px;text-align:center;width:100%;color:white;font-size:55px;font-weight:700">质谱实验室</div>
+                <div style="width:90%;margin:auto;height:80%;background-color:#ededed;border-radius:20px;position:relative;overflow-y: auto;">
+                    <div style="width:90%;margin:auto;height:250px;padding-top:35px;">
+                        <div onclick="window.location.href='detailinfo.html'" style="width:48%;height:250px;background-color:#ffffff;float:left">
+                            <div style="width:100%;height:50px;line-height:50px;color:white;background-color:#5eaadd;text-align:center;font-size:25px">质谱仪</div>
+                            <div style="width:100%">
+                                <div style="display:inline-block;width:35%;padding-left:5%"><img style="width:90%" src="img/img_01.png"></div>
+                                <div style="display:inline-block;height:100%;float:right;width:60%">
+                                    <div style="margin-top:20px;line-height:25px">
+                                        <div style="color:#078de9;font-size:20px">2019.07.11</div>
+                                        <div><span>食品学院</span><span style="margin-left:10px">李老师</span><span style="margin-left:10px">08:00-12:00</span></div>
+                                    </div>
+                                    <div style="margin-top:20px;line-height:25px">
+                                        <div style="color:#078de9;font-size:20px">2019.07.12</div>
+                                        <div><span>化工学院</span><span style="margin-left:10px">王老师</span><span style="margin-left:10px">08:00-12:00</span></div>
+                                        <div><span>能源学院</span><span style="margin-left:10px">杨老师</span><span style="margin-left:10px">14:00-16:00</span></div>
+                                        <div><span>化工学院</span><span style="margin-left:10px">王老师</span><span style="margin-left:10px">16:00-18:00</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div onclick="window.location.href='detailinfo.html'" style="width:48%;height:250px;background-color:#ffffff;float:right">
+                            <div style="width:100%;height:50px;line-height:50px;color:white;background-color:#5eaadd;text-align:center;font-size:25px">高压气体吸附仪</div>
+                            <div style="height:150px">
+                                <div style="display:inline-block;width:35%;padding-left:5%"><img style="width:90%" src="img/img_02.png"></div>
+                                <div style="display:inline-block;height:100%;float:right;width:60%">
+                                    <div style="margin-top:20px;line-height:25px">
+                                        <div style="color:#078de9;font-size:20px">2019.07.12</div>
+                                        <div><span>化工学院</span><span style="margin-left:10px">王老师</span><span style="margin-left:10px">08:00-12:00</span></div>
+                                        <div><span>能源学院</span><span style="margin-left:10px">杨老师</span><span style="margin-left:10px">14:00-16:00</span></div>
+                                        <div><span>化工学院</span><span style="margin-left:10px">王老师</span><span style="margin-left:10px">16:00-18:00</span></div>
+                                    </div>
+                                    <div style="margin-top:20px;line-height:25px">
+                                        <div style="color:#078de9;font-size:20px">2019.07.11</div>
+                                        <div><span>食品学院</span><span style="margin-left:10px">李老师</span><span style="margin-left:10px">08:00-12:00</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="width:90%;margin:auto;height:250px;padding-top:35px;">
+                        <div onclick="window.location.href='detailinfo.html'" style="width:48%;height:250px;background-color:#ffffff;float:left">
+                            <div style="width:100%;height:50px;line-height:50px;color:white;background-color:#5eaadd;text-align:center;font-size:25px">同步热分析仪</div>
+                            <div style="height:150px">
+                                <div style="display:inline-block;width:35%;padding-left:5%"><img style="width:90%" src="img/img_03.png"></div>
+                                <div style="display:inline-block;height:100%;float:right;width:60%">
+                                    <div style="margin-top:20px;line-height:25px">
+                                        <div style="color:#078de9;font-size:20px">2019.07.11</div>
+                                        <div><span>食品学院</span><span style="margin-left:10px">李老师</span><span style="margin-left:10px">08:00-12:00</span></div>
+                                    </div>
+                                    <div style="margin-top:20px;line-height:25px">
+                                        <div style="color:#078de9;font-size:20px">2019.07.12</div>
+                                        <div><span>化工学院</span><span style="margin-left:10px">王老师</span><span style="margin-left:10px">08:00-12:00</span></div>
+                                        <div><span>能源学院</span><span style="margin-left:10px">杨老师</span><span style="margin-left:10px">14:00-16:00</span></div>
+                                        <div><span>化工学院</span><span style="margin-left:10px">王老师</span><span style="margin-left:10px">16:00-18:00</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div onclick="window.location.href='detailinfo.html'" style="width:48%;height:250px;background-color:#ffffff;float:right">
+                            <div style="width:100%;height:50px;line-height:50px;color:white;background-color:#5eaadd;text-align:center;font-size:25px">圆二色光谱仪</div>
+                            <div style="width:100%">
+                                <div style="display:inline-block;width:35%;padding-left:5%"><img style="width:90%" src="img/img_04.png"></div>
+                                <div style="display:inline-block;height:100%;float:right;width:60%">
+                                    <div style="margin-top:20px;line-height:25px">
+                                        <div style="color:#078de9;font-size:20px">2019.07.12</div>
+                                        <div><span>化工学院</span><span style="margin-left:10px">王老师</span><span style="margin-left:10px">08:00-12:00</span></div>
+                                        <div><span>能源学院</span><span style="margin-left:10px">杨老师</span><span style="margin-left:10px">14:00-16:00</span></div>
+                                        <div><span>化工学院</span><span style="margin-left:10px">王老师</span><span style="margin-left:10px">16:00-18:00</span></div>
+                                    </div>
+                                    <div style="margin-top:20px;line-height:25px">
+                                        <div style="color:#078de9;font-size:20px">2019.07.11</div>
+                                        <div><span>食品学院</span><span style="margin-left:10px">李老师</span><span style="margin-left:10px">08:00-12:00</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="position:absolute;right:0;width:20%;height:100%;background-color:#38508e">
+                <div style="width:100%;position:relative">
+                    <img src="img/img_Monitor.png" style="width:100%">
+                    <div style="width:100%;height:40px;line-height:40px;position:absolute;bottom:4px;color:white;font-size:20px;background:rgba(0,0,0,0.5);"><span style="padding-left:10px">逸夫楼314实验室</span></div>
+                </div>
+                <div>
+                    <div style="margin-top:20px;color:white;font-size:40px;text-align:center;font-weight:700;width:100%;text-align:center;height:70px;line-height:70px">环境数据检测</div>
+                    <div style="margin-top:10px;color:white;font-size:25px;text-align:center;width:100%;text-align:center;height:40px;line-height:40px"><div style="display:inline-block;width:50%;text-align:right;">温度：</div><div style="display:inline-block;width:50%;text-align:left;">25.6℃</div></div>
+                    <div style="margin-top:10px;color:white;font-size:25px;text-align:center;width:100%;text-align:center;height:40px;line-height:40px"><div style="display:inline-block;width:50%;text-align:right;">湿度：</div><div style="display:inline-block;width:50%;text-align:left;">85%</div></div>
+                    <div style="margin-top:10px;color:white;font-size:25px;text-align:center;width:100%;text-align:center;height:40px;line-height:40px"><div style="display:inline-block;width:50%;text-align:right;">CO2：</div><div style="display:inline-block;width:50%;text-align:left;">661PPM</div></div>
+                    <div style="margin-top:10px;color:white;font-size:25px;text-align:center;width:100%;text-align:center;height:40px;line-height:40px"><div style="display:inline-block;width:50%;text-align:right;">亮度：</div><div style="display:inline-block;width:50%;text-align:left;">160lx</div></div>
+                    <div style="margin-top:10px;color:white;font-size:25px;text-align:center;width:100%;text-align:center;height:40px;line-height:40px"><div style="display:inline-block;width:50%;text-align:right;">PM2.5：</div><div style="display:inline-block;width:50%;text-align:left;">25ug/m³</div></div>
+                    <div style="margin-top:10px;color:white;font-size:25px;text-align:center;width:100%;text-align:center;height:40px;line-height:40px"><div style="display:inline-block;width:50%;text-align:right;">甲醛：</div><div style="display:inline-block;width:50%;text-align:left;">0.09mg/m³</div></div>
+                    <div onclick="parent.ShowOpenDoor();" style="width:140px;height:140px;margin:auto;background-color:#f1cc31;border-radius:70px;margin-top:60px;box-shadow:5px 5px 10px #1e4b7b;color:white;text-align:center;font-size:50px;line-height:140px;font-weight:700">开门</div>
+                </div>
+            </div>
+        </div>
+        <div style="background-color:#0c59c0;height:81px">
+            <div class="" style="color:#ffce00;line-height:81px;font-size:30px;float:left;margin-left:50px;">通知：7月11日下午，实验室将进行卫生整合，请各位老师不要进行预约！</div>
+            <div class="bottommenu" style="float:right;line-height:81px;margin-right:5px" onclick="parent.CallCSharpMethod('ShowOpenDoor','')"><img style="vertical-align:middle;height:77px" src="img/qrcode.png"></div>
+            <div class="bottommenu" style="float:right;line-height:81px;margin-right:5px" onclick="window.CallCSharpMethod('ShowSwitchMode','')"><img style="vertical-align:middle;height:77px" src="../resource/modeswitching.png"></div>
+        </div>
+    </div>
+    <input type="hidden" id="hidActivityId">
+    <input type="hidden" id="hidNewsId">
+    <script src="../js/jquery-2.1.4.min.js"></script>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script src="../js/common.js"></script>
+    <script src="../js/dragula.js"></script>
+    <script src="../js/example.min.js"></script>
+    <script>
+        setTimeout(function(){
+            document.getElementsByTagName('body')[0].style.height = window.innerHeight+'px';
+            $("#Main").height(window.innerHeight);
+            $("#partlist").height(window.innerHeight-124-81);
+        },20);
+
+    </script>
+</body>
+</html>

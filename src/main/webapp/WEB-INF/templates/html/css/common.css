@@ -1,0 +1,122 @@
+body{margin: 0}
+ul{list-style: none;}
+/*班牌*/
+.Main {
+    background: url('../resource/u282.png') no-repeat;
+    background-size: 100% 100%;
+}
+/*班牌模式头部*/
+.Main .head {
+    color: rgb(253, 252, 253);
+    font-family: "Arial Normal", Arial;
+    font-style: normal;
+    height:86px;
+    position:relative
+}
+.Main .head .classinfo{
+    font-weight: 400;
+    font-size: 36px;
+    position:absolute;
+    left:5%;
+    top:25%;
+}
+.Main .head .currclock{
+    position:absolute;
+    right:5%;
+    top:25%;
+}
+.Main .head .currclock  .clock {
+    font-size: 1.1em;
+    font-weight: 400;
+    text-align: center;
+    line-height: 26px;
+    float: left;
+}
+.Main .head .currclock .clockTime{
+    font-weight: 700;
+    font-size: 50px;
+    float: left;
+    line-height:70px;
+}
+.Main .currclock{
+    float: right;
+    color:white;
+    margin-right: 65px;
+}
+.Main .currclock  .clock {
+    font-size: 1.1em;
+    font-weight: 400;
+    text-align: left;
+    float: left;
+    position: absolute;
+    bottom: 10px;
+    right: 60px;
+}
+.Main .currclock .clockTime{
+    font-weight: 700;
+    font-size: 40px;
+    float: left;
+    position: absolute;
+    right: 200px;
+    bottom: 10px;
+}
+
+.HidTxt{text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
+.pointer{cursor:pointer;}
+
+/*班牌模式底部导航*/
+.Nav { bottom:0;height:81px;width:99%;position:absolute;padding-left:1%;}
+.Nav .bottomline{float:left;height:57px;width:2px;background-color:#7a77a6;margin-left:50px;margin-top:12px;}
+.Nav .bottommenu{cursor:pointer;float:left;width:6.5%;margin-top:13px;height:55px;border-radius:10px;line-height:55px;text-align:center;font-size:25px;color:#dad8fd;}
+
+/*滚动条样式*/
+::-webkit-scrollbar {height: .5rem;background:#dae6fc;}
+::-webkit-scrollbar-track {border-radius: 0;}
+::-webkit-scrollbar-thumb {border-radius: 0;background-color: #ffffff;transition: all .2s;border-radius: .5rem;}
+::-webkit-scrollbar-button {display: block;}
+::-webkit-scrollbar-button:horizontal:single-button:start {height:16px;background: url("../resource/scrollbar_upper_s.png") no-repeat;cursor: pointer;background-size:cover;}
+::-webkit-scrollbar-button:horizontal:single-button:end {height:16px;background: url("../resource/scrollbar_below_s.png") no-repeat;cursor: pointer;background-size:cover;}
+::-webkit-scrollbar-button:vertical:single-button:start {height:16px;background: url("../resource/scrollbar_upper_s.png") no-repeat;cursor: pointer;background-size:cover;}
+::-webkit-scrollbar-button:vertical:single-button:end {height:16px;background: url("../resource/scrollbar_below_s.png") no-repeat;cursor: pointer;background-size:cover;}
+::-webkit-scrollbar-track:horizontal {padding: 0;margin: 0;}
+
+/*班牌classindex首页样式*/
+.classindex .bottomlist{bottom:0;height:81px;background-color:#444285;width:100%;position:absolute;}
+.classinfo{height:85px;position:relative;}
+.classname{float: left;color: white;font-weight:700;text-align:center;margin-left: 45px;margin-top:25px;}
+.classnum{ float:left;height:100%;width:35%;line-height:128px;color:#71e2fb;}
+.peoplecount{text-align: center;font-size: 25px;float: left;color:white;margin-top:40px;}
+.peoplename{text-align: center;font-size: 25px;float:left;color:white;margin-top: 40px;margin-left:15px}
+.classindex .part{background-color:#e0edfd;width:29.5%;height:42%;border-radius:20px;margin-left:1%;margin-top:1%;float:left;padding:1.2%;}
+.classindex .part1{background-color:#e0edfd;width:550px;height:320px;border-radius:20px;margin-left:30px;margin-top:25px;float:left;padding:20px;}
+.classindex .part .rightinfo{height:100%;width:100%;}
+.classindex .part .rightinfo .teacherinfo{float:left;height:100%;width:50%;text-align:left;font-size:30px;}
+.classindex .part1flag{border-radius: 20px;font-size:1.4em;margin-top:20px}
+.classindex .part1bzr{width:100%;text-align:left;margin-left:20px;margin-top:5%;}
+.classindex .part1name{width:100%;text-align:left;margin-left:20px;margin-top:10px;color:#0077ca}
+.classindex .part1subject{width:100%;text-align:left;margin-left:20px;margin-top:10px;font-size:0.7em}
+.classindex .part1img{border-radius:100px;margin-top:5%;width:100%;height:92%;}
+.classindex .part2{background-color:#e0edfd;width:550px;height:320px;border-radius:20px;margin-left:30px;margin-top:25px;float:left;padding:20px;}
+.classindex .part .detail{height:100%;text-align:center;line-height:34px;font-size:1.1em;color:black;margin-top:5px;text-overflow:ellipsis;overflow:hidden;display: -webkit-box;-webkit-line-clamp: 4;-webkit-box-orient: vertical;}
+.classindex .part3{background-color:#e0edfd;width:550px;height:320px;border-radius:20px;margin-left:30px;margin-top:25px;float:left;padding:20px;}
+.classindex .part4{opacity:0.8;border:10px solid #956d56;background-color:#304f65;width:820px;height:44%;border-radius:20px;margin-left:45px;margin-top:25px;float:left;padding:20px;}
+.classindex .part5{background-color:#ffffff;width:840px;height:46%;border-radius:20px;margin-left:45px;margin-top:25px;float:left;padding:20px;}
+.classindex .part .subjectover{height:25%;width:100%;color:#afb1b3;font-size:1.1em;text-align:left;}
+.classindex .part .subjecton{height:25%;width:100%;color:white;font-size:1.1em;text-align:center;background-color:#1cacea;border-radius:20px;}
+.classindex .part .subjectleft{height:20%;width:100%;color:black;font-size:1.1em;text-align:center;}
+.classindex .part .subjectdetail{margin-top:3%;display:inline-block;}
+.classindex .part .todaywork{float:left;margin-left:15px;color:white;margin-top:5px;}
+.classindex .part .ZR{float:left;color:#e3b53d;margin-left:25px;margin-top:5px;}
+.classindex .part .homework{border-bottom:1px dashed white;height:77.5%;width:100%;color:white;}
+.classindex .part .second{font-weight:700;font-size:1.1em;border-bottom:1px dashed white;height:20%;padding-top:2.5%;width:100%;color:white;}
+.classindex .part .third{height:27.5%;font-weight:700;font-size:1.1em;display:none;}
+.classindex .part .newtitle{float:left;color:#e3b53d;margin-top:3.5%;}
+.classindex .part .newinfo{float:left;color:white;margin-left:10px;margin-top:3.5%;}
+.classindex .part .left{float:left;width:100%;height:50%;position:relative;text-align:center;}
+.classindex .part .back{height:100%;max-width:100%;position:relative;}
+.classindex .part .picinfo{margin:auto;height:80%;width:80%;margin-top:9%;}
+.classindex .part .right{float:left;width:100%;height:50%;font-size:1.1em;}
+.classindex .part .righttitle{margin:auto;width:80%;text-align:center;font-weight:700;}
+.classindex .part .rightcontent{width:80%;height:80%;margin:auto;margin-top:10px;}
+.classindex .task{background-color: #d5defb;border-radius:10px;padding:15px;margin-top:5px}
+
